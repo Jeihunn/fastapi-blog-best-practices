@@ -1,0 +1,172 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}{{ _("Contact") }} – Blogy{% endblock %}
+
+{% block content %}
+<!-- Page Title -->
+<div class="page-title">
+  <div class="breadcrumbs">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{{ url_for('home') }}"><i class="bi bi-house"></i> {{ _("Home") }}</a>
+        </li>
+        <li class="breadcrumb-item active current">{{ _("Contact") }}</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="title-wrapper">
+    <h1>{{ _("Contact") }}</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,
+      luctus nec ullamcorper mattis, pulvinar dapibus leo.
+    </p>
+  </div>
+</div>
+<!-- End Page Title -->
+
+<!-- Contact Section -->
+<section id="contact" class="contact section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-4 mb-5">
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="info-card">
+          <div class="icon-box">
+            <i class="bi bi-geo-alt"></i>
+          </div>
+          <h3>{{ _("Our Address") }}</h3>
+          <p>2847 Rainbow Road, Springfield, IL 62701, USA</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="info-card">
+          <div class="icon-box">
+            <i class="bi bi-telephone"></i>
+          </div>
+          <h3>{{ _("Contact Number") }}</h3>
+          <p>
+            Mobile: +1 (555) 123-4567<br />
+            Email: info@example.com
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="info-card">
+          <div class="icon-box">
+            <i class="bi bi-clock"></i>
+          </div>
+          <h3>{{ _("Opening Hour") }}</h3>
+          <p>
+            Monday - Saturday: 9:00 - 18:00<br />
+            Sunday: Closed
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-wrapper" data-aos="fade-up" data-aos-delay="400">
+          <form id="contact-form" role="form" class="php-email-form">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-phone"></i></span>
+                  <input type="text" class="form-control" name="phone" placeholder="{{ _('Phone number') }}*" required />
+                </div>
+              </div>
+              <div class="col-md-6 form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                  <input type="email" class="form-control" name="email" placeholder="{{ _('Email address') }}*" required />
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12 form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-person"></i></span>
+                  <input type="text" name="name" class="form-control" placeholder="{{ _('Your name') }}*" required />
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-chat-dots"></i></span>
+                  <textarea class="form-control" name="message" rows="6" placeholder="{{ _('Write a message') }}*" required></textarea>
+                </div>
+              </div>
+              <div class="my-3">
+                <div class="loading" style="display:none">{{ _('Loading') }}</div>
+                <div class="error-message" style="display:none"></div>
+                <div class="sent-message" style="display:none">{{ _('Your message has been sent. Thank you!') }}</div>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn-blogy">{{ _('Submit Message') }}</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Contact Section -->
+{% endblock %}
+
+{% block tail %}
+<script>
+(async () => {
+  const lang = "{{ request.state.language }}";
+  const form = document.getElementById("contact-form");
+  const loadingEl = form.querySelector('.loading');
+  const errorEl = form.querySelector('.error-message');
+  const sentEl = form.querySelector('.sent-message');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    loadingEl.style.display = 'block';
+    errorEl.style.display = 'none';
+    sentEl.style.display = 'none';
+
+    const payload = {
+      phone_number: form.querySelector('input[name="phone"]').value,
+      email: form.querySelector('input[name="email"]').value,
+      name: form.querySelector('input[name="name"]').value,
+      message: form.querySelector('textarea[name="message"]').value
+    };
+
+    try {
+      const res = await fetch(`${window.API_BASE}/api/v1/essentials/contacts?lang=${lang}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      loadingEl.style.display = 'none';
+
+      if (!res.ok) {
+        let msg = '';
+        if (Array.isArray(data.detail)) {
+          msg = data.detail.map(err => err.msg).join('\n');
+        } else {
+          msg = data.detail || "{{ _('Failed to send message.') }}";
+        }
+        errorEl.innerText = msg;
+        errorEl.style.display = 'block';
+      } else {
+        sentEl.innerText = data.message;
+        sentEl.style.display = 'block';
+        form.reset();
+      }
+    } catch {
+      loadingEl.style.display = 'none';
+      errorEl.innerText = "{{ _('Unable to send. Please try again later.') }}";
+      errorEl.style.display = 'block';
+    }
+  });
+})();
+</script>
+{% endblock %}

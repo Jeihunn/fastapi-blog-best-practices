@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>{% block title %}Blogy{% endblock %}</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicons -->
+    <link
+      href="{{ url_for('static', path='assets/img/favicon.png') }}"
+      rel="icon"
+    />
+    <link
+      href="{{ url_for('static', path='assets/img/apple-touch-icon.png') }}"
+      rel="apple-touch-icon"
+    />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="{{ url_for('static', path='assets/vendor/bootstrap/css/bootstrap.min.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', path='assets/vendor/bootstrap-icons/bootstrap-icons.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', path='assets/vendor/aos/aos.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', path='assets/vendor/swiper/swiper-bundle.min.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', path='assets/vendor/glightbox/css/glightbox.min.css') }}"
+      rel="stylesheet"
+    />
+
+    <!-- Main CSS File -->
+    <link
+      href="{{ url_for('static', path='assets/css/main.css') }}"
+      rel="stylesheet"
+    />
+
+    {% block head %}{% endblock %}
+  </head>
+
+  <body>
+    {% include "frontend/partials/header.html" %}
+
+    <main class="main">{% block content %}{% endblock %}</main>
+
+    {% include "frontend/partials/footer.html" %}
+
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="{{ url_for('static', path='assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', path='assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ url_for('static', path='assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', path='assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ url_for('static', path='assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+
+    <!-- Main JS File -->
+    <script src="{{ url_for('static', path='assets/js/main.js') }}"></script>
+
+    <script>
+      window.API_BASE = "http://localhost:8000";
+      window.isAuthenticated = !!localStorage.getItem("access_token");
+
+      (function () {
+        const rawPublicOnly = [
+          "{{ url_for('login') }}",
+          "{{ url_for('signup') }}",
+          "{{ url_for('forgot_password') }}",
+          "{{ url_for('verify_email') }}",
+          "{{ url_for('verify') }}",
+          "{{ url_for('reset_password') }}",
+        ];
+        const publicOnlyPaths = rawPublicOnly.map((p) => {
+          try {
+            return new URL(p).pathname;
+          } catch {
+            return p;
+          }
+        });
+        if (
+          publicOnlyPaths.includes(window.location.pathname) &&
+          window.isAuthenticated
+        ) {
+          window.location.replace("{{ url_for('home') }}");
+        }
+      })();
+
+      (function () {
+        const rawProtected = [
+          "{{ url_for('profile') }}",
+        ];
+        const protectedPaths = rawProtected.map((p) => {
+          try {
+            return new URL(p).pathname;
+          } catch {
+            return p;
+          }
+        });
+        if (
+          protectedPaths.includes(window.location.pathname) &&
+          !window.isAuthenticated
+        ) {
+          window.location.replace("{{ url_for('login') }}");
+        }
+      })();
+
+      function logout() {
+        localStorage.removeItem("access_token");
+        window.location.replace("{{ url_for('login') }}");
+      }
+
+      (async () => {
+        const loginLink = document.getElementById("login-link");
+        const authDropdown = document.getElementById("auth-dropdown");
+        const emailSpan = document.getElementById("user-email");
+        const avatarImg = document.getElementById("user-avatar");
+
+        if (!window.isAuthenticated) {
+          // guest: show only Login
+          loginLink.style.display = "block";
+          authDropdown.style.display = "none";
+          return;
+        }
+
+        // fetch current user
+        try {
+          const token = localStorage.getItem("access_token");
+          const res = await fetch(`${window.API_BASE}/api/v1/users/me`, {
+            headers: { Authorization: "Bearer " + token },
+          });
+          if (!res.ok) throw new Error();
+          const user = await res.json();
+
+          // fill in avatar + email
+          const defaultAvatar =
+            "{{ url_for('static', path='assets/img/default-avatar.png') }}";
+          avatarImg.src = user.profile_image || defaultAvatar;
+          avatarImg.alt = user.email;
+          emailSpan.textContent = user.email;
+
+          // toggle links
+          loginLink.style.display = "none";
+          authDropdown.style.display = "block";
+        } catch {}
+      })();
+
+      function setLanguageCookie(lang) {
+        const expires = new Date();
+        expires.setFullYear(expires.getFullYear() + 1);
+        document.cookie = `language=${lang}; Path=/; Expires=${expires.toUTCString()}; SameSite=Lax`;
+        setTimeout(() => window.location.reload(), 100);
+      }
+    </script>
+
+    <script>
+      (function() {
+        const form  = document.getElementById("header-search-form");
+        const input = document.getElementById("header-search-input");
+        if (!form || !input) return;
+
+        form.addEventListener("submit", e => {
+          e.preventDefault();
+          const q = input.value.trim();
+          if (!q) return;
+          // /blogs sayfasına yönlendir, page=1 olsun
+          const params = new URLSearchParams({ search: q, page: 1 });
+          window.location.href = `/blogs?${params.toString()}`;
+        });
+      })();
+    </script>
+
+    {% block tail %}{% endblock %}
+  </body>
+</html>

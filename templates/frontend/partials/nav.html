@@ -1,0 +1,98 @@
+<div class="nav-wrap">
+  <div class="container d-flex justify-content-center position-relative">
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li>
+          <a
+            href="{{ url_for('home') }}"
+            class="{% if request.url.path == request.app.url_path_for('home') %}active{% endif %}"
+          >
+            {{ _('Home') }}
+          </a>
+        </li>
+        <li>
+          <a
+            href="{{ url_for('blogs') }}"
+            class="{% if request.url.path == request.app.url_path_for('blogs') %}active{% endif %}"
+          >
+            {{ _('Blogs') }}
+          </a>
+        </li>
+        <li>
+          <a
+            href="{{ url_for('about') }}"
+            class="{% if request.url.path == request.app.url_path_for('about') %}active{% endif %}"
+          >
+            {{ _('About') }}
+          </a>
+        </li>
+        <li>
+          <a
+            href="{{ url_for('contact') }}"
+            class="{% if request.url.path == request.app.url_path_for('contact') %}active{% endif %}"
+          >
+            {{ _('Contact') }}
+          </a>
+        </li>
+
+        <!-- Login button -->
+        <li id="login-link" class="cta-item" style="display: none">
+          <a
+            href="{{ url_for('login') }}"
+            class="cta-btn {% if request.url.path == request.app.url_path_for('login') %}active{% endif %}"
+          >
+            <i class="bi bi-box-arrow-in-right"></i>
+            <span>{{ _('Login') }}</span>
+          </a>
+        </li>
+
+        <!-- Authenticated user dropdown -->
+        <li id="auth-dropdown" class="dropdown cta-item" style="display: none">
+          <a href="#" class="d-flex align-items-center">
+            <img
+              id="user-avatar"
+              src=""
+              alt="avatar"
+              class="rounded-circle me-2"
+              style="width: 32px; height: 32px; object-fit: cover; border: 2px solid #ddd;"
+            />
+            <span id="user-email"></span>
+            <i class="bi bi-chevron-down toggle-dropdown ms-1"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('profile') }}">{{ _('Profile') }}</a></li>
+            <li><a class="dropdown-item" href="javascript:logout()">{{ _('Logout') }}</a></li>
+          </ul>
+        </li>
+
+        {% if supported_locales is defined and supported_locales|length > 1 %}
+        <li class="dropdown">
+          <a
+            href="#"
+            class="dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ request.state.language|upper }}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            {% for code in supported_locales %}
+            <li>
+              <a
+                href="#"
+                class="dropdown-item {% if code == request.state.language %}active{% endif %}"
+                onclick="setLanguageCookie('{{ code }}'); return false;"
+              >
+                {{ code|upper }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endif %}
+
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+  </div>
+</div>

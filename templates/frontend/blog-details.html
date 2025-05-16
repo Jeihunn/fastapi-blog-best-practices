@@ -1,0 +1,370 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}{{ _("Blog Details") }} – Blogy{% endblock %}
+
+{% block content %}
+<div class="page-title">
+  <div class="breadcrumbs">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{{ url_for('home') }}">
+            <i class="bi bi-house"></i> {{ _("Home") }}
+          </a>
+        </li>
+        <li class="breadcrumb-item active current">{{ _("Blog Details") }}</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <!-- Blog Details -->
+      <section id="blog-details" class="blog-details section">
+        <div data-aos="fade-up">
+          <div id="blog-details-wrapper"></div>
+        </div>
+      </section>
+
+      <!-- Comments -->
+      <section id="blog-comments" class="blog-comments section">
+        <div data-aos="fade-up" data-aos-delay="100">
+          <div class="blog-comments-3">
+            <div class="section-header">
+              <h3>
+                {{ _("Discussion") }}
+                <span id="comment-count" class="comment-count"></span>
+              </h3>
+            </div>
+            <!-- Scrollable comments container -->
+            <div
+              id="comments-wrapper"
+              class="comments-wrapper"
+              style="max-height: 500px; overflow-y: auto"
+            >
+              <!-- Comments get injected before this sentinel -->
+              <div id="comments-sentinel"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comment Form -->
+      <section id="blog-comment-form" class="blog-comment-form section">
+        <div data-aos="fade-up" data-aos-delay="100">
+          <div id="comment-form-wrapper">
+            <form id="comment-form" class="row gy-3">
+              <div class="col-12 form-group">
+                <label for="comment-input">{{ _("Your Comment") }} *</label>
+                <textarea
+                  id="comment-input"
+                  class="form-control"
+                  rows="5"
+                  placeholder="{{ _('Write your thoughts here.') }}"
+                  required
+                ></textarea>
+              </div>
+              <div class="col-12 text-center">
+                <button type="submit" class="btn-blogy">
+                  {{ _("Post Comment") }}
+                </button>
+              </div>
+            </form>
+            <div id="login-prompt" class="text-center">
+              <p>
+                {{ _("Please") }}
+                <a href="{{ url_for('login') }}">{{ _("log in") }}</a>
+                {{ _("to post a comment.") }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    {% include "frontend/partials/sidebar.html" %}
+  </div>
+</div>
+{% endblock %}
+
+{% block tail %}
+<script>
+  (async () => {
+    const lang = "{{ request.state.language }}";
+    const slug = window.location.pathname.split("/").filter(Boolean).pop();
+    const API_ROOT = window.API_BASE || "";
+    const defaultAvatar =
+      "{{ url_for('static', path='assets/img/default-avatar.png') }}";
+
+    // Show form or login prompt
+    const formEl = document.getElementById("comment-form");
+    const loginEl = document.getElementById("login-prompt");
+    if (window.isAuthenticated) {
+      formEl.style.display = "block";
+      loginEl.style.display = "none";
+    } else {
+      formEl.style.display = "none";
+      loginEl.style.display = "block";
+    }
+
+    // 1) Fetch and render blog details
+    let initialCount = 0;
+    try {
+      const res = await fetch(`${API_ROOT}/api/v1/blogs/${slug}`);
+      if (!res.ok) throw new Error("Blog not found");
+      const b = await res.json();
+
+      const published = new Date(b.published_at).toLocaleString(lang, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      let authorHTML = "";
+      if (b.author) {
+        const img = b.author.profile_image || defaultAvatar;
+        authorHTML = `
+          <div class="author-details">
+            <img src="${img}" alt="${b.author.first_name}" class="author-img"/>
+            <div class="info">
+              <h4>${b.author.first_name} ${b.author.last_name}</h4>
+            </div>
+          </div>
+        `;
+      }
+
+      const metaHTML = `
+        <div class="post-meta">
+          <span class="date"><i class="bi bi-calendar3"></i> ${published}</span>
+          <span class="divider">•</span>
+          <span class="comments">
+            <i class="bi bi-chat-text"></i>
+            <span id="blog-comment-count">${b.comments_count}</span> {{ _("Comments") }}
+          </span>
+          <span class="divider">•</span>
+          <span class="likes">
+            <i class="bi bi-hand-thumbs-up"></i>
+            <span id="blog-likes-count">${b.likes_count}</span> {{ _("Likes") }}
+          </span>
+        </div>
+      `;
+
+
+      document.getElementById("blog-details-wrapper").innerHTML = `
+      <article class="article">
+        <div class="hero-img" data-aos="zoom-in">
+          <img src="${b.cover_image}" alt="${
+        b.title
+      }" class="img-fluid" loading="lazy"/>
+          <div class="meta-overlay">
+            <div class="meta-categories">
+            ${b.categories
+              .map(
+                (cat, i) =>
+                  `<a href="#" class="category">${cat.name}</a>` +
+                  (i < b.categories.length - 1
+                    ? '<span class="divider">•</span>'
+                    : "")
+              )
+              .join("")}
+            <span class="divider">•</span>
+            <span class="reading-time">
+                <i class="bi bi-clock"></i> ${published}
+            </span>
+            </div>
+          </div>
+        </div>
+        <div class="article-content" data-aos="fade-up" data-aos-delay="100">
+          <div class="content-header">
+            <h1 class="title">${b.title}</h1>
+            <div class="author-info">
+            ${authorHTML}
+            ${metaHTML}
+            </div>
+          </div>
+          <div class="content">${b.content}</div>
+          <div class="meta-bottom">
+            <div class="tags-section">
+              <h4>{{ _("Related Topics") }}</h4>
+              <div class="tags">
+                ${b.tags
+                  .map((t) => `<a href="#" class="tag">${t.name}</a>`)
+                  .join("")}
+              </div>
+            </div>
+            <div class="share-section">
+              <h4>{{ _("Share Article") }}</h4>
+              <div class="social-links">
+                <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="copy-link" title="{{ _('Copy Link') }}">
+                  <i class="bi bi-link-45deg"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+    `;
+
+      initialCount = b.comments_count;
+      document.getElementById(
+        "comment-count"
+      ).textContent = `(${initialCount})`;
+      if (window.AOS) window.AOS.refresh();
+    } catch (err) {
+      console.error("Blog load error", err);
+    }
+
+    // 2) Infinite-scroll comments setup
+    let page = 1,
+      size = 5,
+      loading = false,
+      done = false;
+
+    const wrapper = document.getElementById("comments-wrapper");
+    const sentinel = document.getElementById("comments-sentinel");
+    const cntHdr = document.getElementById("comment-count");
+    const cntMeta = document.getElementById("blog-comment-count");
+
+    // Build a single comment card
+    function createCommentHTML(comment) {
+      const when = new Date(comment.created_at).toLocaleString(lang, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      const avatar = comment.user.profile_image || defaultAvatar;
+      return `
+      <article class="comment-card aos-init" data-aos="fade-up">
+        <div class="comment-header">
+          <div class="user-info">
+            <img src="${avatar}" alt="${comment.user.first_name}" loading="lazy"/>
+            <div class="meta">
+              <h4 class="name">${comment.user.first_name} ${comment.user.last_name}</h4>
+              <span class="date"><i class="bi bi-calendar3"></i> ${when}</span>
+            </div>
+          </div>
+        </div>
+        <div class="comment-content"><p>${comment.content}</p></div>
+      </article>
+    `;
+    }
+
+    // Load next page of comments
+    async function loadComments() {
+      if (loading || done) return;
+      loading = true;
+      try {
+        const r = await fetch(
+          `${API_ROOT}/api/v1/blogs/${slug}/comments` +
+            `?size=${size}&page=${page}&ordering=-created_at`
+        );
+        if (!r.ok) throw new Error("Comments fetch failed");
+        const j = await r.json();
+
+        if (!j.items.length) {
+          done = true;
+          observer.disconnect();
+          return;
+        }
+
+        const fragment = document.createDocumentFragment();
+        j.items.forEach((comment) => {
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = createCommentHTML(comment);
+          const commentEl = tempDiv.firstElementChild;
+          // immediately add aos-animate so it shows
+          commentEl.classList.add("aos-animate");
+          fragment.appendChild(commentEl);
+        });
+        wrapper.insertBefore(fragment, sentinel);
+
+        // if fewer items than page size, we're done
+        if (j.items.length < size) {
+          done = true;
+          observer.disconnect();
+        } else {
+          page++;
+        }
+
+        if (window.AOS) window.AOS.refresh();
+      } catch (e) {
+        console.error("Comments load error", e);
+      } finally {
+        loading = false;
+      }
+    }
+
+    // initial load
+    await loadComments();
+
+    // Observe the sentinel INSIDE the scrollable wrapper
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          loadComments();
+        }
+      },
+      {
+        root: wrapper, // watch the scrollable DIV
+        rootMargin: "50px", // trigger 50px before reaching the sentinel
+        threshold: 0, // any intersection fires the callback
+      }
+    );
+    observer.observe(sentinel);
+
+    // 3) Post new comment handler
+    if (window.isAuthenticated) {
+      formEl.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const txt = document.getElementById("comment-input").value.trim();
+        if (!txt) return;
+
+        try {
+          const resp = await fetch(
+            `${API_ROOT}/api/v1/blogs/${slug}/comments`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+              },
+              body: JSON.stringify({ content: txt }),
+            }
+          );
+
+          if (resp.status === 401) {
+            return (window.location.href = "{{ url_for('login') }}");
+          }
+
+          const comment = await resp.json();
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = createCommentHTML(comment);
+          const commentEl = tempDiv.firstElementChild;
+          commentEl.classList.add("aos-animate");
+          wrapper.insertBefore(commentEl, wrapper.firstChild);
+
+          initialCount++;
+          cntHdr.textContent = `(${initialCount})`;
+          if (cntMeta) cntMeta.textContent = initialCount;
+
+          formEl.reset();
+          if (window.AOS) window.AOS.refresh();
+        } catch (err) {
+          console.error("Post comment error", err);
+        }
+      });
+    }
+  })();
+</script>
+
+<!-- Shared sidebar functionality -->
+<script src="{{ url_for('static', path='assets/js/sidebar.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}{{ _("Sign Up") }} – Blogy{% endblock %}
+
+{% block content %}
+<!-- Page Title -->
+<div class="page-title">
+  <div class="breadcrumbs">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{{ url_for('home') }}"><i class="bi bi-house"></i> {{ _('Home') }}</a>
+        </li>
+        <li class="breadcrumb-item active">{{ _('Sign Up') }}</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="title-wrapper">
+    <h1>{{ _('Sign Up') }}</h1>
+    <p>{{ _('Create a new account to get started.') }}</p>
+  </div>
+</div>
+
+<!-- Register Section -->
+<section id="register" class="register section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="form-wrapper" data-aos="fade-up" data-aos-delay="200">
+          <form id="signup-form" action="#" method="post" class="php-email-form">
+            <div id="error-msg" class="alert alert-danger" style="display:none; white-space: pre-wrap;"></div>
+            <div class="row gy-4">
+              <div class="col-md-6 form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-person"></i></span>
+                  <input id="first_name" type="text" name="first_name" class="form-control" placeholder="{{ _('First name') }}*" required />
+                </div>
+              </div>
+              <div class="col-md-6 form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-person"></i></span>
+                  <input id="last_name" type="text" name="last_name" class="form-control" placeholder="{{ _('Last name') }}*" required />
+                </div>
+              </div>
+              <div class="col-md-12 form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                  <input id="email" type="email" name="email" class="form-control" placeholder="{{ _('Email address') }}*" required />
+                </div>
+              </div>
+              <div class="col-md-12 form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                  <input id="password" type="password" name="password" class="form-control" placeholder="{{ _('Password') }}*" required />
+                </div>
+              </div>
+              <div class="col-12 text-center">
+                <button type="submit">{{ _('Sign Up') }}</button>
+              </div>
+              <div class="col-12 text-center">
+                <p>{{ _('Already have an account?') }} <a href="{{ url_for('login') }}">{{ _('Login') }}</a></p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block tail %}
+<script>
+  const T = {
+    invalid: "{{ _('Invalid input.') }}",
+    failed: "{{ _('Registration failed.') }}",
+    server: "{{ _('Unable to reach server.') }}"
+  };
+
+  const lang = "{{ request.state.language }}";
+
+  document.getElementById('signup-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const errDiv = document.getElementById('error-msg');
+    errDiv.style.display = 'none';
+
+    const firstName = document.getElementById('first_name').value;
+    const lastName = document.getElementById('last_name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+      const res = await fetch(`${window.API_BASE}/api/v1/auth/register?lang=${lang}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ first_name: firstName, last_name: lastName, email, password })
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        let msg;
+        if (Array.isArray(data.detail)) {
+          msg = data.detail.map(err => err.msg).join('\n');
+        } else if (data.detail && typeof data.detail === 'object' && data.detail.reason) {
+          msg = data.detail.reason;
+        } else {
+          msg = data.detail || T.failed;
+        }
+        errDiv.innerText = msg;
+        errDiv.style.display = 'block';
+        return;
+      }
+
+      window.location.href = '{{ url_for("verify_email") }}';
+    } catch {
+      errDiv.innerText = T.server;
+      errDiv.style.display = 'block';
+    }
+  });
+</script>
+{% endblock %}

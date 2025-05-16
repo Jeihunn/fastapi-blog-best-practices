@@ -1,0 +1,22 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}{{ _("Verify Your Email") }}– Blogy{% endblock %}
+
+{% block content %}
+<!-- Verification Notice -->
+<section id="verify-email" class="section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h1>{{ _("Verify Your Email") }}</h1>
+        <p class="lead">
+          {{ _(
+            "Thank you for signing up! A verification link has been sent to your email address. "
+            "Please check your inbox and click the link to activate your account."
+            ) }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

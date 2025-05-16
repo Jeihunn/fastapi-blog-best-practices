@@ -1,0 +1,488 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}{{ _("Profile") }} – Blogy{%endblock %}
+
+{% block head %}
+{{ super() }}
+<style>
+  .avatar-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  .avatar-action {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .avatar-action:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  .avatar-action--change {
+    bottom: 8px;
+    right: 8px;
+  }
+  .avatar-action--clear {
+    bottom: 8px;
+    left: 8px;
+  }
+  .avatar-action i {
+    font-size: 1rem;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Page Title -->
+<div class="page-title">
+  <div class="breadcrumbs">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{{ url_for('home') }}"
+            ><i class="bi bi-house"></i> {{ _("Home") }}</a
+          >
+        </li>
+        <li class="breadcrumb-item active current">{{ _("Profile") }}</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="title-wrapper">
+    <h1>{{ _("Profile") }}</h1>
+    <p>{{ _("View and edit your personal information below.") }}</p>
+  </div>
+</div>
+<!-- End Page Title -->
+
+<!-- Author Profile Section -->
+<section id="author-profile" class="author-profile section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="author-profile-1">
+      <div class="row">
+        <!-- Author Info -->
+        <div class="col-lg-4 mb-4 mb-lg-0">
+          <div class="author-card" data-aos="fade-up">
+            <div class="author-image text-center mb-3">
+              <div class="avatar-wrapper">
+                <img
+                  id="profile-avatar"
+                  src="{{ url_for('static', path='assets/img/default-avatar.png') }}"
+                  alt="{{ _('User avatar') }}"
+                  class="img-fluid rounded-circle"
+                  style="
+                    width: 150px;
+                    height: 150px;
+                    object-fit: cover;
+                    border: 2px solid #ddd;
+                  "
+                />
+                <!-- Change avatar -->
+                <button
+                  id="change-avatar-btn"
+                  class="avatar-action avatar-action--change"
+                  title="{{ _('Change avatar') }}"
+                  type="button"
+                >
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <!-- Clear avatar -->
+                <button
+                  id="clear-avatar-btn"
+                  class="avatar-action avatar-action--clear"
+                  title="{{ _('Clear avatar') }}"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#confirmDeleteModal"
+                  style="display: none"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+              <input
+                type="file"
+                id="avatar-input"
+                accept="image/*"
+                style="display: none"
+              />
+            </div>
+            <div class="author-info text-center">
+              <!-- Inline-editable name -->
+              <div
+                id="name-display-wrapper"
+                class="d-inline-block position-relative"
+              >
+                <h2 id="profile-name-display"></h2>
+                <button
+                  id="edit-name-btn"
+                  class="btn btn-sm btn-link p-0 ms-2"
+                  title="{{ _('Edit name') }}"
+                >
+                  <i class="bi bi-pencil"></i>
+                </button>
+              </div>
+              <form id="edit-name-form" class="d-none mt-2">
+                <div class="input-group input-group-sm">
+                  <input
+                    type="text"
+                    id="first-name-input"
+                    class="form-control"
+                    placeholder="{{ _('First name') }}"
+                    required
+                  />
+                  <input
+                    type="text"
+                    id="last-name-input"
+                    class="form-control"
+                    placeholder="{{ _('Last name') }}"
+                    required
+                  />
+                  <button type="submit" class="btn btn-primary">
+                    {{ _('Save') }}
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="cancel-edit-name"
+                  >
+                    {{ _('Cancel') }}
+                  </button>
+                </div>
+              </form>
+
+              <p id="profile-email" class="designation mt-2"></p>
+
+              <div
+                class="author-stats d-flex justify-content-between text-center my-4"
+              >
+                <div class="stat-item">
+                  <h4
+                    data-purecounter-start="0"
+                    data-purecounter-end="147"
+                    data-purecounter-duration="1"
+                    class="purecounter"
+                  ></h4>
+                  <p>{{ _('Articles') }}</p>
+                </div>
+                <div class="stat-item">
+                  <h4
+                    data-purecounter-start="0"
+                    data-purecounter-end="13"
+                    data-purecounter-duration="1"
+                    class="purecounter"
+                  ></h4>
+                  <p>{{ _('Awards') }}</p>
+                </div>
+                <div class="stat-item">
+                  <h4
+                    data-purecounter-start="0"
+                    data-purecounter-end="25"
+                    data-purecounter-duration="1"
+                    class="purecounter"
+                  >
+                    K
+                  </h4>
+                  <p>{{ _('Followers') }}</p>
+                </div>
+              </div>
+
+              <div class="social-links">
+                <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+                <a href="https://www.facebook.com/jeihunpiriyev" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"
+                  ><i class="bi bi-instagram"></i
+                ></a>
+                <a href="https://www.linkedin.com/in/jeihunpiriyev" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Change Password Form -->
+        <div class="col-lg-8">
+          <div class="author-content" data-aos="fade-up" data-aos-delay="200">
+            <div class="content-header">
+              <h3>{{ _("Change Password") }}</h3>
+            </div>
+            <div class="content-body">
+              <div
+                id="pwd-msg"
+                class="alert"
+                style="display: none; white-space: pre-wrap"
+              ></div>
+              <form id="pwd-form">
+                <div class="mb-3">
+                  <label for="current-password" class="form-label"
+                    >{{ _("Current Password") }}</label
+                  >
+                  <input
+                    type="password"
+                    id="current-password"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="new-password" class="form-label"
+                    >{{ _("New Password") }}</label
+                  >
+                  <input
+                    type="password"
+                    id="new-password"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="confirm-password" class="form-label"
+                    >{{ _("Confirm Password") }}</label
+                  >
+                  <input
+                    type="password"
+                    id="confirm-password"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-warning">
+                  {{ _("Change Password") }}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- /Change Password -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Author Profile Section -->
+
+<!-- Confirm Delete Modal -->
+<div
+  class="modal fade"
+  id="confirmDeleteModal"
+  tabindex="-1"
+  aria-labelledby="confirmDeleteLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmDeleteLabel">
+          {{ _('Delete Profile Image') }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="{{ _('Close') }}"
+        ></button>
+      </div>
+      <div class="modal-body">
+        {{ _('Are you sure you want to delete your profile image?') }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          {{ _('Cancel') }}
+        </button>
+        <button type="button" class="btn btn-danger" id="confirm-delete-avatar">
+          {{ _('Yes, Delete') }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block tail %}
+<script>
+  (async () => {
+    if (!window.isAuthenticated) {
+      return window.location.replace("{{ url_for('login') }}");
+    }
+
+    const lang = "{{ request.state.language }}";
+
+    const token = localStorage.getItem("access_token");
+    const apiMe = `${window.API_BASE}/api/v1/users/me`;
+    const avatarEl = document.getElementById("profile-avatar");
+    const clearBtn = document.getElementById("clear-avatar-btn");
+    const inputEl = document.getElementById("avatar-input");
+    const defaultAv =
+      "{{ url_for('static', path='assets/img/default-avatar.png') }}";
+    const navAvatar = document.getElementById("user-avatar");
+
+    // Elements for inline name edit
+    const nameWrap = document.getElementById("name-display-wrapper");
+    const nameDisp = document.getElementById("profile-name-display");
+    const editBtn = document.getElementById("edit-name-btn");
+    const editForm = document.getElementById("edit-name-form");
+    const firstIn = document.getElementById("first-name-input");
+    const lastIn = document.getElementById("last-name-input");
+    const cancelEdit = document.getElementById("cancel-edit-name");
+
+    // Elements for change-password
+    const pwdForm = document.getElementById("pwd-form");
+    const pwdMsg = document.getElementById("pwd-msg");
+
+    // 1) Load user
+    let user;
+    try {
+      const r = await fetch(apiMe, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      if (!r.ok) throw 0;
+      user = await r.json();
+    } catch {
+      localStorage.removeItem("access_token");
+      return window.location.replace("{{ url_for('login') }}");
+    }
+
+    // 2) Populate avatar & info
+    const src = user.profile_image || defaultAv;
+    avatarEl.src = src;
+    avatarEl.alt = user.email;
+    if (navAvatar) navAvatar.src = src;
+
+    nameDisp.textContent = [user.first_name, user.last_name]
+      .filter(Boolean)
+      .join(" ");
+    document.getElementById("profile-email").textContent = user.email;
+    clearBtn.style.display = user.profile_image ? "flex" : "none";
+
+    // 3) Inline name edit handlers
+    editBtn.onclick = () => {
+      const [f, l] = nameDisp.textContent.split(" ");
+      firstIn.value = f || "";
+      lastIn.value = l || "";
+      nameWrap.classList.add("d-none");
+      editForm.classList.remove("d-none");
+    };
+    cancelEdit.onclick = () => {
+      editForm.classList.add("d-none");
+      nameWrap.classList.remove("d-none");
+    };
+    editForm.onsubmit = async (e) => {
+      e.preventDefault();
+      const payload = {
+        first_name: firstIn.value.trim(),
+        last_name: lastIn.value.trim(),
+      };
+      const r2 = await fetch(apiMe, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify(payload),
+      });
+      if (r2.ok) {
+        nameDisp.textContent = [payload.first_name, payload.last_name]
+          .filter(Boolean)
+          .join(" ");
+        editForm.classList.add("d-none");
+        nameWrap.classList.remove("d-none");
+      } else {
+        const err = await r2.json().catch(() => ({}));
+        alert(err.detail || "{{ _('Failed to update name.') }}");
+      }
+    };
+
+    // 4) Avatar change
+    document.getElementById("change-avatar-btn").onclick = () =>
+      inputEl.click();
+    inputEl.onchange = async () => {
+      const file = inputEl.files[0];
+      if (!file) return;
+      const fd = new FormData();
+      fd.append("file", file);
+      const up = await fetch(`${apiMe}/profile-image?lang=${lang}`, {
+        method: "POST",
+        headers: { Authorization: "Bearer " + token },
+        body: fd,
+      });
+      if (!up.ok) {
+        const err = await up.json().catch(() => ({}));
+        return alert(
+          err.detail || "{{ _('Failed to upload profile image.') }}"
+        );
+      }
+      const r3 = await fetch(apiMe, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      const u3 = await r3.json();
+      const nsrc = u3.profile_image || defaultAv;
+      avatarEl.src = nsrc;
+      if (navAvatar) navAvatar.src = nsrc;
+      clearBtn.style.display = u3.profile_image ? "flex" : "none";
+    };
+
+    // 5) Avatar delete
+    document.getElementById("confirm-delete-avatar").onclick = async () => {
+      const d = await fetch(`${apiMe}/profile-image?lang=${lang}`, {
+        method: "DELETE",
+        headers: { Authorization: "Bearer " + token },
+      });
+      const modal = bootstrap.Modal.getOrCreateInstance(
+        document.getElementById("confirmDeleteModal")
+      );
+      if (d.status === 204) {
+        avatarEl.src = defaultAv;
+        if (navAvatar) navAvatar.src = defaultAv;
+        clearBtn.style.display = "none";
+        modal.hide();
+      } else {
+        const e = await d.json().catch(() => ({}));
+        alert(e.detail || "{{ _('Failed to delete profile image.') }}");
+      }
+    };
+
+    // 6) Change password
+    pwdForm.onsubmit = async (ev) => {
+      ev.preventDefault();
+      pwdMsg.style.display = "none";
+      const cur = document.getElementById("current-password").value;
+      const nw = document.getElementById("new-password").value;
+      const cf = document.getElementById("confirm-password").value;
+      if (nw !== cf) {
+        pwdMsg.className = "alert alert-danger";
+        pwdMsg.innerText = "{{ _('Passwords do not match.') }}";
+        return (pwdMsg.style.display = "block");
+      }
+      try {
+        const r4 = await fetch(`${apiMe}/change-password?lang=${lang}`, {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          body: JSON.stringify({ current_password: cur, new_password: nw }),
+        });
+        if (r4.ok) {
+          pwdMsg.className = "alert alert-success";
+          pwdMsg.innerText = "{{ _('Password changed successfully.') }}";
+          pwdForm.reset();
+        } else {
+          const e4 = await r4.json().catch(() => ({}));
+          pwdMsg.className = "alert alert-danger";
+          pwdMsg.innerText =
+            e4.detail || "{{ _('Failed to change password.') }}";
+        }
+      } catch {
+        pwdMsg.className = "alert alert-danger";
+        pwdMsg.innerText = "{{ _('Server error.') }}";
+      }
+      pwdMsg.style.display = "block";
+    };
+  })();
+</script>
+{% endblock %}

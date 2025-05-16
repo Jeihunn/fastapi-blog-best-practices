@@ -1,0 +1,218 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}{{ _("Login") }} – Blogy{% endblock %}
+
+{% block head %}
+{{ super() }}
+<style>
+  .btn-google {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 320px;
+    background-color: #fff;
+    color: #202124;
+    border: 1px solid #dadce0;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color .2s ease;
+    margin: 0 auto 1rem;
+  }
+  .btn-google:hover {
+    background-color: #f7f8fa;
+  }
+  .btn-google img {
+    height: 18px;
+    width: 18px;
+    margin-right: 0.5rem;
+  }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<!-- Page Title -->
+<div class="page-title">
+  <div class="breadcrumbs">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{{ url_for('home') }}"><i class="bi bi-house"></i> {{ _("Home") }}</a>
+        </li>
+        <li class="breadcrumb-item active">{{ _("Login") }}</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="title-wrapper">
+    <h1>{{ _("Login") }}</h1>
+    <p>{{ _("Please enter your credentials to access your account.") }}</p>
+  </div>
+</div>
+<!-- End Page Title -->
+
+<section id="login" class="login section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="form-wrapper" data-aos="fade-up" data-aos-delay="200">
+          <form id="login-form" action="#" method="post" class="php-email-form">
+
+            <!-- Error message container -->
+            <div id="error-msg" class="alert alert-danger" style="display:none; white-space:pre-wrap;"></div>
+
+            <div class="row gy-4">
+
+              <!-- Continue with Google button -->
+              <div class="col-12 text-center">
+                <button
+                  type="button"
+                  id="google-login-btn"
+                  class="btn-google"
+                >
+                  <img src="https://developers.google.com/identity/images/g-logo.png" alt="G">
+                  {{ _("Continue with Google") }}
+                </button>
+              </div>
+
+              <!-- Email input field -->
+              <div class="col-md-12 form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                  <input id="email"
+                         type="email"
+                         name="email"
+                         class="form-control"
+                         placeholder="{{ _('Email address') }}*"
+                         required />
+                </div>
+              </div>
+
+              <!-- Password input field -->
+              <div class="col-md-12 form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                  <input id="password"
+                         type="password"
+                         name="password"
+                         class="form-control"
+                         placeholder="{{ _('Password') }}*"
+                         required />
+                </div>
+              </div>
+
+              <!-- Submit button -->
+              <div class="col-12 text-center">
+                <button type="submit" class="btn-blogy">{{ _("Login") }}</button>
+              </div>
+
+              <!-- Forgot password link -->
+              <div class="col-12 text-center">
+                <p><a href="{{ url_for('forgot_password') }}">{{ _("Forgot your password?") }}</a></p>
+              </div>
+
+              <!-- Sign up link -->
+              <div class="col-12 text-center">
+                <p>
+                  {{ _("Don’t have an account?") }}
+                  <a href="{{ url_for('signup') }}">{{ _("Sign Up") }}</a>
+                </p>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block tail %}
+<script>
+  const T = {
+    invalid: "{{ _('Invalid email or password.') }}",
+    notVerified: "{{ _('Your email is not verified. A new verification link has been sent.') }}",
+    failed: "{{ _('Login failed.') }}",
+    server: "{{ _('Unable to reach server.') }}"
+  };
+  const lang = "{{ request.state.language }}";
+
+  // Normal login flow
+  document.getElementById("login-form").addEventListener("submit", async e => {
+    e.preventDefault();
+    const errDiv = document.getElementById("error-msg");
+    errDiv.style.display = "none";
+
+    const email = document.getElementById("email").value,
+          password = document.getElementById("password").value;
+
+    const params = new URLSearchParams({
+      grant_type: "password",
+      username: email,
+      password
+    });
+
+    try {
+      const res = await fetch(
+        `${window.API_BASE}/api/v1/auth/jwt/login?lang=${lang}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: params,
+          credentials: "include"
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        let msg;
+        if (res.status === 400 && data.detail === "LOGIN_USER_NOT_VERIFIED") {
+          await fetch(
+            `${window.API_BASE}/api/v1/auth/request-verify-token?lang=${lang}`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email }),
+              credentials: "include"
+            }
+          );
+          msg = T.notVerified;
+        } else if (res.status === 400 && data.detail === "LOGIN_BAD_CREDENTIALS") {
+          msg = T.invalid;
+        } else if (Array.isArray(data.detail)) {
+          msg = data.detail.map(err => err.msg).join("\n");
+        } else {
+          msg = data.detail || T.failed;
+        }
+        errDiv.innerText = msg;
+        errDiv.style.display = "block";
+        return;
+      }
+      localStorage.setItem("access_token", data.access_token);
+      window.location.href = "{{ url_for('home') }}";
+    } catch {
+      errDiv.innerText = T.server;
+      errDiv.style.display = "block";
+    }
+  });
+
+  // Google OAuth flow
+  document.getElementById("google-login-btn").addEventListener("click", async () => {
+    try {
+      const res = await fetch(
+        `${window.API_BASE}/api/v1/auth/google/authorize?lang=${lang}`, {
+          credentials: "include"
+        }
+      );
+      if (!res.ok) throw new Error();
+      const { authorization_url } = await res.json();
+      window.location.href = authorization_url;
+    } catch {
+      alert("{{ _('Unable to start Google login.') }}");
+    }
+  });
+</script>
+{% endblock %}

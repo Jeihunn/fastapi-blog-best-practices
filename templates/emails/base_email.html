@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="{{ request.state.language }}">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}{{ _("Notification") }}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background-color: #f3f4f6;
+      font-family: Arial, sans-serif;
+      color: #333;
+    "
+  >
+    <div
+      style="
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <div style="background-color: #3b82f6; padding: 20px; text-align: center">
+        <h1 style="font-size: 24px; color: #ffffff; margin: 0">
+          {% block header_title %}{{ _("Notification") }}{% endblock %}
+        </h1>
+      </div>
+
+      <div style="padding: 30px; text-align: center">
+        <!-- Logo (inline) -->
+        <img
+          src="cid:company_logo"
+          alt="Company Logo"
+          style="max-width: 120px; margin-bottom: 20px"
+        />
+        {% block content %}{% endblock %}
+      </div>
+
+      <div style="border-top: 1px solid #e5e7eb; margin: 0 20px"></div>
+
+      <!-- Footer -->
+      <div style="background-color: #fff; padding: 20px; text-align: center">
+        <p style="margin: 0; font-size: 14px; color: #888">
+          {{ _("If you have any questions or require additional assistance, please do not hesitate to contact us at") }}
+          <a
+            href="mailto:support@example.com"
+            style="color: #3b82f6; text-decoration: none"
+            >support@example.com</a
+          >.
+        </p>
+        <p style="margin: 8px 0 0; font-size: 14px; color: #888">
+          {{ _("Sincerely,") }}<br />
+          <strong>Example Team</strong>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

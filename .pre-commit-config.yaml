@@ -12,7 +12,8 @@ repos:
       - id: check-json                # Validate JSON syntax
       - id: check-toml                # Validate TOML syntax
       - id: check-merge-conflict      # Prevent merge conflict markers
-      - id: check-added-large-files   # Block adding very large files (default=500kB)
+      - id: check-added-large-files   # Block adding very large files
+        args: ["--maxkb=1024"]  # 1MB
 
   - repo: https://github.com/psf/black
     rev: 25.1.0

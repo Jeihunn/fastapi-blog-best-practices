@@ -1,0 +1,39 @@
+<div class="col-lg-4 sidebar">
+  <div class="widgets-container" data-aos="fade-up" data-aos-delay="200">
+    <!-- Search Widget -->
+    <div class="search-widget widget-item">
+      <h3 class="widget-title">{{ _("Search") }}</h3>
+      <form id="sidebar-search-form">
+        <input type="text" placeholder="{{ _('Type & hit enter...') }}" />
+        <button type="submit" title="{{ _('Search') }}">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+    </div>
+    <!--/Search Widget -->
+
+    <!-- Categories Widget -->
+    <div class="categories-widget widget-item">
+      <h3 class="widget-title">{{ _("Categories") }}</h3>
+      <ul class="mt-3" id="sidebar-categories">
+      </ul>
+    </div>
+    <!--/Categories Widget -->
+
+    <!-- Recent Posts Widget -->
+    <div class="recent-posts-widget widget-item">
+      <h3 class="widget-title">{{ _("Recent Posts") }}</h3>
+      <div id="sidebar-recent-posts">
+      </div>
+    </div>
+    <!--/Recent Posts Widget -->
+
+    <!-- Tags Widget -->
+    <div class="tags-widget widget-item">
+      <h3 class="widget-title">{{ _("Tags") }}</h3>
+      <ul id="sidebar-tags">
+      </ul>
+    </div>
+    <!--/Tags Widget -->
+  </div>
+</div>

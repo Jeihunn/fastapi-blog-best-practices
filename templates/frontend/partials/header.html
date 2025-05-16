@@ -1,0 +1,37 @@
+<header id="header" class="header position-relative">
+  <div class="container-fluid container-xl position-relative">
+    <div class="top-row d-flex align-items-center justify-content-between">
+      <a href="{{ url_for('home') }}" class="logo d-flex align-items-end">
+        <img
+          src="{{ url_for('static', path='assets/img/logo.png') }}"
+          alt=""
+        />
+        <h1 class="sitename">Blogy</h1>
+        <span>.</span>
+      </a>
+
+      <div class="d-flex align-items-center">
+        <div class="social-links">
+          <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+          <a href="https://www.facebook.com/jeihunpiriyev" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/jeihunpiriyev" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        </div>
+
+        <form id="header-search-form" class="search-form ms-4">
+          <input
+            type="text"
+            id="header-search-input"
+            placeholder="{{ _('Search') }}..."
+            class="form-control"
+          />
+          <button type="submit" class="btn">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {% include "frontend/partials/nav.html" %}
+</header>

@@ -1,0 +1,233 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}{{ _("Blogs") }} – Blogy{%endblock %}
+
+{% block content %}
+<!-- Page Title -->
+<div class="page-title position-relative">
+  <div class="breadcrumbs">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{{ url_for('home') }}">
+            <i class="bi bi-house"></i> {{ _("Home") }}
+          </a>
+        </li>
+        <li class="breadcrumb-item active current">{{ _("Blogs") }}</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="title-wrapper">
+    <h1>{{ _("Blogs") }}</h1>
+    <p>{{ _("Discover our latest articles and updates.") }}</p>
+  </div>
+</div>
+<!-- End Page Title -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <!-- Blog List Section -->
+      <section id="blogs-list" class="section">
+        <div class="row gy-4" id="blog-list-wrapper"></div>
+      </section>
+
+      <!-- Pagination Section -->
+      <section id="pagination-2" class="pagination-2 section">
+        <div class="container">
+          <div class="d-flex justify-content-center">
+            <ul id="blog-pagination"></ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    {% include "frontend/partials/sidebar.html" %}
+  </div>
+</div>
+{% endblock %}
+
+{% block tail %}
+<script>
+  (async () => {
+    const locale = "{{ request.state.language }}";
+    const wrapper = document.getElementById("blog-list-wrapper");
+    const pagination = document.getElementById("blog-pagination");
+    const pageSize = 6;
+
+    // Current filter values
+    let currentSearch = null;
+    let currentCategory = null;
+    let currentTag = null;
+
+    // Read filters + page from URL
+    function readFiltersFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      currentSearch = params.get("search");
+      currentCategory = params.get("category_slug");
+      currentTag = params.get("tag_slug");
+      return parseInt(params.get("page")) || 1;
+    }
+
+    // Update browser URL via History API
+    function updateUrl(page) {
+      const url = new URL(window.location);
+      const qp = new URLSearchParams();
+      if (currentSearch) qp.set("search", currentSearch);
+      if (currentCategory) qp.set("category_slug", currentCategory);
+      if (currentTag) qp.set("tag_slug", currentTag);
+      qp.set("page", page);
+      url.search = qp.toString();
+      window.history.pushState({ page }, "", url);
+    }
+
+    // Fetch and render blog list based on filters + pagination
+    async function loadPage(page = 1, updateHistory = true) {
+      try {
+        wrapper.innerHTML = "";
+        pagination.innerHTML = "";
+
+        const params = new URLSearchParams({
+          size: pageSize,
+          ordering: "-published_at",
+          page,
+        });
+        if (currentSearch) params.set("search", currentSearch);
+        if (currentCategory) params.set("category_slug", currentCategory);
+        if (currentTag) params.set("tag_slug", currentTag);
+
+        const res = await fetch(`${window.API_BASE}/api/v1/blogs?${params}`);
+        const data = await res.json();
+
+        if (!data.items.length) {
+          wrapper.innerHTML = `
+            <div class="col-12">
+              <p class="text-center text-danger">{{ _("No posts available.") }}</p>
+            </div>`;
+          if (updateHistory) updateUrl(page);
+          return;
+        }
+
+        data.items.forEach((post) => {
+          const publishedDate = new Date(post.published_at).toLocaleDateString(
+            locale,
+            { year: "numeric", month: "short", day: "numeric" }
+          );
+          wrapper.insertAdjacentHTML(
+            "beforeend",
+            `
+            <div class="col-lg-6">
+              <article class="card h-100 border-0 shadow-sm">
+                <img src="${post.cover_image}" class="card-img-top" alt="${
+              post.title
+            }">
+                <div class="card-body">
+                  <p class="text-muted mb-1">${
+                    post.categories?.[0]?.name || ""
+                  }</p>
+                  <h5 class="card-title">
+                    <a href="/blogs/${
+                      post.slug
+                    }" class="stretched-link text-decoration-none">
+                      ${post.title}
+                    </a>
+                  </h5>
+                  <p class="card-text">
+                    <time datetime="${
+                      post.published_at
+                    }">${publishedDate}</time>
+                  </p>
+                </div>
+              </article>
+            </div>`
+          );
+        });
+
+        const totalPages = Math.ceil(data.total / data.size);
+        const currentPage = data.page;
+
+        // Previous
+        pagination.insertAdjacentHTML(
+          "beforeend",
+          `
+          <li>
+            <a href="#" data-page="${currentPage - 1}" class="page-num ${
+            currentPage === 1 ? "disabled" : ""
+          }">
+              <i class="bi bi-chevron-left"></i>
+            </a>
+          </li>`
+        );
+
+        // Page numbers
+        for (let i = 1; i <= totalPages; i++) {
+          if (i === 2 && currentPage > 4) {
+            pagination.insertAdjacentHTML(
+              "beforeend",
+              `<li><span class="page-num dots">…</span></li>`
+            );
+            i = currentPage - 2;
+            continue;
+          }
+          if (i === currentPage + 3 && i < totalPages) {
+            pagination.insertAdjacentHTML(
+              "beforeend",
+              `<li><span class="page-num dots">…</span></li>`
+            );
+            i = totalPages;
+            continue;
+          }
+          pagination.insertAdjacentHTML(
+            "beforeend",
+            `
+            <li>
+              <a href="#" data-page="${i}" class="page-num ${
+              i === currentPage ? "active" : ""
+            }">${i}</a>
+            </li>`
+          );
+        }
+
+        // Next
+        pagination.insertAdjacentHTML(
+          "beforeend",
+          `
+          <li>
+            <a href="#" data-page="${currentPage + 1}" class="page-num ${
+            currentPage === totalPages ? "disabled" : ""
+          }">
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </li>`
+        );
+
+        pagination.querySelectorAll("a.page-num").forEach((a) =>
+          a.addEventListener("click", (e) => {
+            e.preventDefault();
+            const p = parseInt(e.currentTarget.dataset.page);
+            if (p >= 1 && p <= totalPages) loadPage(p, true);
+          })
+        );
+
+        if (updateHistory) updateUrl(currentPage);
+      } catch (err) {
+        console.error("Error loading blog list:", err);
+      }
+      if (window.AOS) window.AOS.refresh();
+    }
+
+    // Back/forward support
+    window.addEventListener("popstate", () => {
+      const p = readFiltersFromUrl();
+      loadPage(p, false);
+    });
+
+    // Initial load
+    const startPage = readFiltersFromUrl();
+    loadPage(startPage, false);
+  })();
+</script>
+
+<!-- Shared sidebar functionality -->
+<script src="{{ url_for('static', path='assets/js/sidebar.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}{{ _("Logging in...") }} – Blogy{% endblock %}
+
+{% block head %}
+{{ super() }}
+<style>
+  /* Full-page translucent blurred overlay */
+  .callback-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050; /* üstte görünmesi için */
+  }
+  /* Frosted-glass card */
+  .callback-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: saturate(150%) blur(10px);
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    max-width: 360px;
+    width: 90%;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .callback-card h2 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .callback-card p {
+    margin-bottom: 1rem;
+    color: #555;
+  }
+  .callback-card .spinner-border {
+    width: 3rem;
+    height: 3rem;
+    color: #0d6efd; /* Bootstrap primary rengi */
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="callback-overlay">
+  <div class="callback-card">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">{{ _("Loading...") }}</span>
+    </div>
+    <h2>{{ _("Please wait...") }}</h2>
+  </div>
+</div>
+{% endblock %}
+
+{% block tail %}
+<script>
+(async () => {
+  const rawQuery = window.location.search;
+  if (!rawQuery) {
+    return window.location.replace("{{ url_for('login') }}");
+  }
+
+  try {
+    const res = await fetch(
+      `${window.API_BASE}/api/v1/auth/google/callback${rawQuery}`,
+      { credentials: "include" }
+    );
+    if (!res.ok) throw new Error("OAuth callback failed");
+
+    const data = await res.json();
+    localStorage.setItem("access_token", data.access_token);
+    window.location.replace("{{ url_for('home') }}");
+  } catch (err) {
+    alert("{{ _('Google login failed. Please try again.') }}");
+    window.location.replace("{{ url_for('login') }}");
+  }
+})();
+</script>
+{% endblock %}
