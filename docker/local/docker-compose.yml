@@ -1,0 +1,27 @@
+services:
+  db:
+    container_name: db
+    image: postgres:16
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "db_name"
+      POSTGRES_USER: "db_user"
+      POSTGRES_PASSWORD: "123456"
+    volumes:
+      - ./pgdb:/var/lib/postgresql/data
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+
+  redis:
+    container_name: redis
+    image: redis:alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"

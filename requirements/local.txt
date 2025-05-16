@@ -1,0 +1,17 @@
+-r base.txt
+
+black==25.1.0
+cfgv==3.4.0
+distlib==0.3.9
+filelock==3.18.0
+identify==2.6.10
+mypy==1.15.0
+mypy_extensions==1.1.0
+nodeenv==1.9.1
+packaging==25.0
+pathspec==0.12.1
+platformdirs==4.3.7
+pre_commit==4.2.0
+ruff==0.11.6
+tomli==2.2.1
+types-aiofiles==24.1.0.20250326

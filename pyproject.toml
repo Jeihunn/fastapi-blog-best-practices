@@ -1,0 +1,72 @@
+[project]
+name = "fastapi-blog-best-practices"
+dynamic = ["version"]
+requires-python = ">=3.11"
+description = "A FastAPI blog starter template demonstrating best practices"
+authors = [{ name = "Jeihunn", email = "jeihunpiriyev@gmail.com" }]
+readme = "README.md"
+license = "MIT"
+
+[project.urls]
+Repository = "https://github.com/Jeihunn/fastapi-blog-best-practices.git"
+Documentation = "https://github.com/Jeihunn/fastapi-blog-best-practices.git#readme"
+Issues = "https://github.com/Jeihunn/fastapi-blog-best-practices.git/issues"
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+exclude = '''
+/(
+   \.git
+  |__pycache__
+  |\.mypy_cache
+  |\.ruff_cache
+  |venv_.*
+  |\.venv
+  |\.env*
+  |alembic
+  |docker
+  |logs
+  |nginx
+  |requirements
+  |build
+  |dist
+)/
+'''
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+exclude = [
+  ".git",
+  "__pycache__",
+  ".mypy_cache",
+  ".ruff_cache",
+  "venv_*",
+  ".venv",
+  ".env*",
+  "alembic",
+  "docker",
+  "logs",
+  "nginx",
+  "requirements",
+  "build",
+  "dist",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+fixable = ["ALL"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["T20"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+strict = true
+disable_error_code = [
+  # "misc",
+]
+exclude = '(venv_|\.venv|\.env|alembic|docker|logs|nginx|requirements|build|dist)'
