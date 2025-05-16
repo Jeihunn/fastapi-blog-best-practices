@@ -1,0 +1,1261 @@
+# Translations template for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-05-16 17:40+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: src/auth/manager.py:69 templates/emails/verify_email.html:3
+#: templates/emails/verify_email.html:4
+msgid "Email Verification Request"
+msgstr ""
+
+#: src/auth/manager.py:99 templates/emails/reset_password.html:3
+#: templates/emails/reset_password.html:4
+msgid "Password Reset Request"
+msgstr ""
+
+#: src/auth/manager.py:116
+#, python-format
+msgid "Password must be at least %(min_length)d characters long."
+msgstr ""
+
+#: src/auth/manager.py:126
+msgid "Password cannot contain parts of your email address."
+msgstr ""
+
+#: src/auth/manager.py:133
+msgid "Password must include at least one uppercase letter."
+msgstr ""
+
+#: src/auth/manager.py:139
+msgid "Password must include at least one lowercase letter."
+msgstr ""
+
+#: src/auth/manager.py:145
+msgid "Password must include at least one digit."
+msgstr ""
+
+#: src/auth/manager.py:152
+msgid "Password must include at least one special character (e.g. !@#%)."
+msgstr ""
+
+#: src/blogs/admin.py:15 src/blogs/models.py:45
+msgid "Category"
+msgstr ""
+
+#: src/blogs/admin.py:16 src/blogs/models.py:204
+#: templates/frontend/partials/sidebar.html:17
+msgid "Categories"
+msgstr ""
+
+#: src/blogs/admin.py:18 src/blogs/admin.py:65 src/blogs/admin.py:112
+#: src/blogs/admin.py:223 src/blogs/admin.py:271
+msgid "Blog"
+msgstr ""
+
+#: src/blogs/admin.py:62 src/blogs/models.py:65
+msgid "Tag"
+msgstr ""
+
+#: src/blogs/admin.py:63 src/blogs/models.py:211
+#: templates/frontend/partials/sidebar.html:33
+msgid "Tags"
+msgstr ""
+
+#: src/blogs/admin.py:109 src/blogs/models.py:294 src/blogs/models.py:334
+msgid "Blog post"
+msgstr ""
+
+#: src/blogs/admin.py:110 src/blogs/models.py:97 src/blogs/models.py:129
+#: src/users/models.py:75
+msgid "Blog posts"
+msgstr ""
+
+#: src/blogs/admin.py:141
+msgid "Likes count"
+msgstr ""
+
+#: src/blogs/admin.py:142
+msgid "Comments count"
+msgstr ""
+
+#: src/blogs/admin.py:220
+msgid "Comment"
+msgstr ""
+
+#: src/blogs/admin.py:221 src/blogs/models.py:219 src/users/models.py:83
+#: templates/frontend/blog-details.html:146 templates/frontend/index.html:299
+msgid "Comments"
+msgstr ""
+
+#: src/blogs/admin.py:268
+msgid "Blog like"
+msgstr ""
+
+#: src/blogs/admin.py:269
+msgid "Blog likes"
+msgstr ""
+
+#: src/blogs/models.py:38 src/blogs/models.py:58
+msgid "BlogPost"
+msgstr ""
+
+#: src/blogs/models.py:81 src/blogs/models.py:113 src/essentials/models.py:24
+msgid "Name"
+msgstr ""
+
+#: src/blogs/models.py:88 src/blogs/models.py:120 src/blogs/models.py:189
+msgid "Slug"
+msgstr ""
+
+#: src/blogs/models.py:146
+msgid "Author ID"
+msgstr ""
+
+#: src/blogs/models.py:153
+msgid "Title"
+msgstr ""
+
+#: src/blogs/models.py:158 src/blogs/models.py:281
+#: templates/sqladmin/index.html:94
+msgid "Content"
+msgstr ""
+
+#: src/blogs/models.py:164
+msgid "Cover image"
+msgstr ""
+
+#: src/blogs/models.py:176 templates/sqladmin/index.html:132
+msgid "Published"
+msgstr ""
+
+#: src/blogs/models.py:182
+msgid "Published at"
+msgstr ""
+
+#: src/blogs/models.py:197
+msgid "Author"
+msgstr ""
+
+#: src/blogs/models.py:227 templates/frontend/blog-details.html:151
+msgid "Likes"
+msgstr ""
+
+#: src/blogs/models.py:267 src/blogs/models.py:314 src/users/admin.py:242
+msgid "User ID"
+msgstr ""
+
+#: src/blogs/models.py:274 src/blogs/models.py:321
+msgid "Blog post ID"
+msgstr ""
+
+#: src/blogs/models.py:289 src/blogs/models.py:329 src/users/admin.py:121
+msgid "User"
+msgstr ""
+
+#: src/blogs/api/v1/router.py:155 src/blogs/api/v1/router.py:212
+#: src/blogs/api/v1/router.py:248 src/blogs/api/v1/router.py:288
+msgid "Blog post not found"
+msgstr ""
+
+#: src/common/models.py:128 src/users/admin.py:142 src/users/admin.py:241
+msgid "ID"
+msgstr ""
+
+#: src/common/models.py:143
+msgid "Created at"
+msgstr ""
+
+#: src/common/models.py:153 src/users/models.py:39
+msgid "Updated at"
+msgstr ""
+
+#: src/common/admin/file_upload.py:78
+#, python-format
+msgid "No upload_to defined for file field '%(field)s'"
+msgstr ""
+
+#: src/common/errors/messages.py:8
+#, python-format
+msgid "value is not a valid email address: %(reason)s"
+msgstr ""
+
+#: src/common/errors/messages.py:10
+msgid "The part after the @-sign is not valid. It should have a period."
+msgstr ""
+
+#: src/common/errors/messages.py:11
+msgid "There must be something after the @-sign."
+msgstr ""
+
+#: src/common/errors/messages.py:12
+msgid "There must be something before the @-sign."
+msgstr ""
+
+#: src/common/errors/messages.py:18
+msgid "value is not a valid phone number"
+msgstr ""
+
+#: src/common/errors/messages.py:23
+msgid "Field required"
+msgstr ""
+
+#: src/common/errors/messages.py:26
+#, python-format
+msgid "String should have at least %(min_length)d characters"
+msgstr ""
+
+#: src/common/utils/file_helpers.py:87
+#, python-format
+msgid "Unsupported file type: %(type)s. Allowed types: %(allowed)s"
+msgstr ""
+
+#: src/core/storage.py:98
+#, python-format
+msgid "File too large (%(actual)s > %(allowed)s)"
+msgstr ""
+
+#: src/essentials/admin.py:11 templates/frontend/contact.html:3
+#: templates/frontend/contact.html:14 templates/frontend/contact.html:20
+#: templates/frontend/partials/nav.html:34
+msgid "Contact"
+msgstr ""
+
+#: src/essentials/admin.py:12
+msgid "Contacts"
+msgstr ""
+
+#: src/essentials/admin.py:14
+msgid "General"
+msgstr ""
+
+#: src/essentials/models.py:14 templates/frontend/contact.html:78
+msgid "Phone number"
+msgstr ""
+
+#: src/essentials/models.py:19 src/users/admin.py:143
+#: templates/sqladmin/login.html:8
+msgid "Email"
+msgstr ""
+
+#: src/essentials/models.py:29
+msgid "Message"
+msgstr ""
+
+#: src/essentials/api/v1/router.py:47
+msgid "An error occurred while submitting your message."
+msgstr ""
+
+#: src/essentials/api/v1/router.py:50
+msgid "Your message has been received."
+msgstr ""
+
+#: src/users/admin.py:28
+msgid "Reset password"
+msgstr ""
+
+#: src/users/admin.py:93
+msgid "Both password fields must be non-empty strings."
+msgstr ""
+
+#: src/users/admin.py:103
+msgid "The passwords do not match."
+msgstr ""
+
+#: src/users/admin.py:122 templates/sqladmin/index.html:52
+msgid "Users"
+msgstr ""
+
+#: src/users/admin.py:124 src/users/admin.py:236
+msgid "Account"
+msgstr ""
+
+#: src/users/admin.py:144 templates/frontend/login.html:104
+#: templates/frontend/signup.html:54 templates/sqladmin/login.html:19
+msgid "Password"
+msgstr ""
+
+#: src/users/admin.py:145
+msgid "Active"
+msgstr ""
+
+#: src/users/admin.py:146
+msgid "Superuser"
+msgstr ""
+
+#: src/users/admin.py:147
+msgid "Verified"
+msgstr ""
+
+#: src/users/admin.py:233
+msgid "OAuth account"
+msgstr ""
+
+#: src/users/admin.py:234 src/users/models.py:69
+msgid "OAuth accounts"
+msgstr ""
+
+#: src/users/admin.py:243
+msgid "OAuth name"
+msgstr ""
+
+#: src/users/admin.py:244
+msgid "Access token"
+msgstr ""
+
+#: src/users/admin.py:245
+msgid "Expires at"
+msgstr ""
+
+#: src/users/admin.py:246
+msgid "Refresh token"
+msgstr ""
+
+#: src/users/admin.py:247
+msgid "Account ID"
+msgstr ""
+
+#: src/users/admin.py:248
+msgid "Account email"
+msgstr ""
+
+#: src/users/models.py:27
+msgid "Date joined"
+msgstr ""
+
+#: src/users/models.py:32
+msgid "Last login"
+msgstr ""
+
+#: src/users/models.py:44 templates/frontend/profile.html:137
+#: templates/frontend/signup.html:36
+msgid "First name"
+msgstr ""
+
+#: src/users/models.py:49 templates/frontend/profile.html:144
+#: templates/frontend/signup.html:42
+msgid "Last name"
+msgstr ""
+
+#: src/users/models.py:55
+msgid "Profile image"
+msgstr ""
+
+#: src/users/models.py:91
+msgid "Blog Likes"
+msgstr ""
+
+#: src/users/api/v1/router.py:93
+#, python-format
+msgid "Model field '%(field)s' not found."
+msgstr ""
+
+#: src/users/api/v1/router.py:130
+msgid "An error occurred while uploading the file."
+msgstr ""
+
+#: src/users/api/v1/router.py:146
+msgid "Failed to update user profile with new image."
+msgstr ""
+
+#: src/users/api/v1/router.py:156
+msgid "Profile image updated successfully."
+msgstr ""
+
+#: src/users/api/v1/router.py:192
+msgid "No profile image to clear."
+msgstr ""
+
+#: src/users/api/v1/router.py:202
+msgid "Failed to clear profile image from user record."
+msgstr ""
+
+#: src/users/api/v1/router.py:262
+msgid "Current password is incorrect."
+msgstr ""
+
+#: src/users/api/v1/router.py:275
+msgid "Failed to update password hash."
+msgstr ""
+
+#: src/users/api/v1/router.py:291
+msgid "An error occurred while changing the password."
+msgstr ""
+
+#: src/users/api/v1/router.py:294 templates/frontend/profile.html:472
+msgid "Password changed successfully."
+msgstr ""
+
+#: templates/admin/users/UserAdmin/details.html:17
+#: templates/sqladmin/details.html:17
+msgid "Column"
+msgstr ""
+
+#: templates/admin/users/UserAdmin/details.html:18
+#: templates/sqladmin/details.html:18
+msgid "Value"
+msgstr ""
+
+#: templates/admin/users/UserAdmin/details.html:50
+#: templates/sqladmin/details.html:50
+msgid "Go Back"
+msgstr ""
+
+#: templates/admin/users/UserAdmin/details.html:58
+#: templates/sqladmin/details.html:58 templates/sqladmin/modals/delete.html:21
+msgid "Delete"
+msgstr ""
+
+#: templates/admin/users/UserAdmin/details.html:65
+#: templates/sqladmin/details.html:65 templates/sqladmin/edit.html:7
+msgid "Edit"
+msgstr ""
+
+#: templates/admin/users/UserAdmin/details.html:71
+#: templates/admin/users/UserAdmin/reset_password.html:64
+#: templates/frontend/reset-password.html:3
+#: templates/frontend/reset-password.html:37
+msgid "Reset Password"
+msgstr ""
+
+#: templates/admin/users/UserAdmin/reset_password.html:6
+msgid "Reset Password for"
+msgstr ""
+
+#: templates/admin/users/UserAdmin/reset_password.html:22
+#: templates/frontend/profile.html:234
+msgid "New Password"
+msgstr ""
+
+#: templates/admin/users/UserAdmin/reset_password.html:29
+msgid "Enter new password"
+msgstr ""
+
+#: templates/admin/users/UserAdmin/reset_password.html:36
+#: templates/frontend/profile.html:245
+msgid "Confirm Password"
+msgstr ""
+
+#: templates/admin/users/UserAdmin/reset_password.html:43
+#: templates/frontend/reset-password.html:32
+msgid "Confirm new password"
+msgstr ""
+
+#: templates/admin/users/UserAdmin/reset_password.html:56
+#: templates/frontend/profile.html:155 templates/frontend/profile.html:294
+#: templates/sqladmin/create.html:23 templates/sqladmin/edit.html:23
+#: templates/sqladmin/modals/delete.html:16
+#: templates/sqladmin/modals/details_action_confirmation.html:16
+#: templates/sqladmin/modals/list_action_confirmation.html:16
+msgid "Cancel"
+msgstr ""
+
+#: templates/emails/base_email.html:5 templates/emails/base_email.html:29
+msgid "Notification"
+msgstr ""
+
+#: templates/emails/base_email.html:48
+msgid ""
+"If you have any questions or require additional assistance, please do not"
+" hesitate to contact us at"
+msgstr ""
+
+#: templates/emails/base_email.html:56
+msgid "Sincerely,"
+msgstr ""
+
+#: templates/emails/reset_password.html:8
+msgid "Hello"
+msgstr ""
+
+#: templates/emails/reset_password.html:11
+msgid ""
+"We received a request to reset your password. If you did not make this "
+"request, please disregard this email. Otherwise, click the button below "
+"to reset your password."
+msgstr ""
+
+#: templates/emails/reset_password.html:20
+msgid "Reset My Password"
+msgstr ""
+
+#: templates/emails/verify_email.html:8
+#, python-format
+msgid "Hello %(email)s,"
+msgstr ""
+
+#: templates/emails/verify_email.html:11
+msgid ""
+"Thank you for signing up! To complete your registration, please verify "
+"your email by clicking the button below."
+msgstr ""
+
+#: templates/emails/verify_email.html:18
+msgid "Verify Now"
+msgstr ""
+
+#: templates/emails/verify_email.html:22
+msgid "If you did not sign up with us, simply ignore this message."
+msgstr ""
+
+#: templates/frontend/404.html:3
+msgid "Page Not Found"
+msgstr ""
+
+#: templates/frontend/404.html:19
+msgid "Oops! Page Not Found"
+msgstr ""
+
+#: templates/frontend/404.html:23
+msgid ""
+"The page you are looking for might have been removed, had its name "
+"changed, or is temporarily unavailable."
+msgstr ""
+
+#: templates/frontend/404.html:28
+msgid "Back to Home"
+msgstr ""
+
+#: templates/frontend/about.html:3 templates/frontend/about.html:14
+#: templates/frontend/about.html:20 templates/frontend/partials/nav.html:26
+msgid "About"
+msgstr ""
+
+#: templates/frontend/about.html:12 templates/frontend/blog-details.html:12
+#: templates/frontend/blogs.html:13 templates/frontend/contact.html:12
+#: templates/frontend/index.html:3 templates/frontend/login.html:46
+#: templates/frontend/partials/nav.html:10 templates/frontend/profile.html:51
+#: templates/frontend/signup.html:12
+msgid "Home"
+msgstr ""
+
+#: templates/frontend/blog-details.html:3
+#: templates/frontend/blog-details.html:15
+msgid "Blog Details"
+msgstr ""
+
+#: templates/frontend/blog-details.html:37
+msgid "Discussion"
+msgstr ""
+
+#: templates/frontend/blog-details.html:60
+msgid "Your Comment"
+msgstr ""
+
+#: templates/frontend/blog-details.html:65
+msgid "Write your thoughts here."
+msgstr ""
+
+#: templates/frontend/blog-details.html:71
+msgid "Post Comment"
+msgstr ""
+
+#: templates/frontend/blog-details.html:77
+msgid "Please"
+msgstr ""
+
+#: templates/frontend/blog-details.html:78
+msgid "log in"
+msgstr ""
+
+#: templates/frontend/blog-details.html:79
+msgid "to post a comment."
+msgstr ""
+
+#: templates/frontend/blog-details.html:192
+msgid "Related Topics"
+msgstr ""
+
+#: templates/frontend/blog-details.html:200
+msgid "Share Article"
+msgstr ""
+
+#: templates/frontend/blog-details.html:205
+msgid "Copy Link"
+msgstr ""
+
+#: templates/frontend/blogs.html:3 templates/frontend/blogs.html:16
+#: templates/frontend/blogs.html:21 templates/frontend/partials/nav.html:18
+msgid "Blogs"
+msgstr ""
+
+#: templates/frontend/blogs.html:22
+msgid "Discover our latest articles and updates."
+msgstr ""
+
+#: templates/frontend/blogs.html:105 templates/frontend/index.html:226
+#: templates/frontend/index.html:407
+msgid "No posts available."
+msgstr ""
+
+#: templates/frontend/contact.html:38
+msgid "Our Address"
+msgstr ""
+
+#: templates/frontend/contact.html:48
+msgid "Contact Number"
+msgstr ""
+
+#: templates/frontend/contact.html:61
+msgid "Opening Hour"
+msgstr ""
+
+#: templates/frontend/contact.html:84 templates/frontend/index.html:180
+#: templates/frontend/index.html:181 templates/frontend/login.html:91
+#: templates/frontend/signup.html:48
+msgid "Email address"
+msgstr ""
+
+#: templates/frontend/contact.html:92
+msgid "Your name"
+msgstr ""
+
+#: templates/frontend/contact.html:98
+msgid "Write a message"
+msgstr ""
+
+#: templates/frontend/contact.html:102 templates/frontend/index.html:192
+msgid "Loading"
+msgstr ""
+
+#: templates/frontend/contact.html:104
+msgid "Your message has been sent. Thank you!"
+msgstr ""
+
+#: templates/frontend/contact.html:107
+msgid "Submit Message"
+msgstr ""
+
+#: templates/frontend/contact.html:155
+msgid "Failed to send message."
+msgstr ""
+
+#: templates/frontend/contact.html:166
+msgid "Unable to send. Please try again later."
+msgstr ""
+
+#: templates/frontend/forgot-password.html:3
+#: templates/frontend/forgot-password.html:14
+#: templates/frontend/forgot-password.html:19
+msgid "Forgot Password"
+msgstr ""
+
+#: templates/frontend/forgot-password.html:12
+#: templates/frontend/forgot-password.html:50 templates/frontend/login.html:3
+#: templates/frontend/login.html:48 templates/frontend/login.html:53
+#: templates/frontend/login.html:111 templates/frontend/partials/nav.html:45
+#: templates/frontend/signup.html:61 templates/sqladmin/login.html:32
+msgid "Login"
+msgstr ""
+
+#: templates/frontend/forgot-password.html:20
+msgid "Enter your email and we’ll send you a link to reset your password."
+msgstr ""
+
+#: templates/frontend/forgot-password.html:41
+msgid "Your email address"
+msgstr ""
+
+#: templates/frontend/forgot-password.html:47
+msgid "Send Reset Link"
+msgstr ""
+
+#: templates/frontend/forgot-password.html:50
+msgid "Remembered?"
+msgstr ""
+
+#: templates/frontend/forgot-password.html:64
+msgid "We’ve sent a password reset link to your email. Please check your inbox."
+msgstr ""
+
+#: templates/frontend/forgot-password.html:65
+msgid "Unable to send reset link. Please try again later."
+msgstr ""
+
+#: templates/frontend/index.html:18 templates/frontend/index.html:21
+msgid "Featured Posts"
+msgstr ""
+
+#: templates/frontend/index.html:20 templates/frontend/index.html:145
+msgid "Check Our"
+msgstr ""
+
+#: templates/frontend/index.html:63 templates/frontend/index.html:64
+msgid "Category Section"
+msgstr ""
+
+#: templates/frontend/index.html:86
+msgid "Don't Miss"
+msgstr ""
+
+#: templates/frontend/index.html:87
+msgid "Revolutionize Your Digital Experience Today"
+msgstr ""
+
+#: templates/frontend/index.html:89
+msgid ""
+"Strategia accelerates your business growth through innovative solutions "
+"and cutting-edge technology. Join thousands of satisfied customers who "
+"have transformed their operations."
+msgstr ""
+
+#: templates/frontend/index.html:94
+msgid "Premium Support"
+msgstr ""
+
+#: templates/frontend/index.html:98
+msgid "Cloud Integration"
+msgstr ""
+
+#: templates/frontend/index.html:102
+msgid "Real-time Analytics"
+msgstr ""
+
+#: templates/frontend/index.html:106
+msgid "Start Free Trial"
+msgstr ""
+
+#: templates/frontend/index.html:107
+msgid "Learn More"
+msgstr ""
+
+#: templates/frontend/index.html:117
+msgid "Digital Platform"
+msgstr ""
+
+#: templates/frontend/index.html:126
+msgid "Growth Rate"
+msgstr ""
+
+#: templates/frontend/index.html:143 templates/frontend/index.html:146
+msgid "Latest Posts"
+msgstr ""
+
+#: templates/frontend/index.html:165
+msgid "Subscribe to our newsletter"
+msgstr ""
+
+#: templates/frontend/index.html:189
+msgid "Subscribe"
+msgstr ""
+
+#: templates/frontend/index.html:194
+msgid "Your subscription request has been sent. Thank you!"
+msgstr ""
+
+#: templates/frontend/index.html:202
+msgid "Call to action image"
+msgstr ""
+
+#: templates/frontend/index.html:271
+msgid "Failed to load posts."
+msgstr ""
+
+#: templates/frontend/index.html:284
+msgid "No featured posts."
+msgstr ""
+
+#: templates/frontend/index.html:304
+msgid "Read More"
+msgstr ""
+
+#: templates/frontend/index.html:316
+msgid "Failed to load featured posts."
+msgstr ""
+
+#: templates/frontend/index.html:380
+msgid "mins read"
+msgstr ""
+
+#: templates/frontend/index.html:394
+msgid "Failed to load category posts."
+msgstr ""
+
+#: templates/frontend/index.html:438
+msgid "Failed to load latest posts."
+msgstr ""
+
+#: templates/frontend/login.html:54
+msgid "Please enter your credentials to access your account."
+msgstr ""
+
+#: templates/frontend/login.html:79
+msgid "Continue with Google"
+msgstr ""
+
+#: templates/frontend/login.html:116
+msgid "Forgot your password?"
+msgstr ""
+
+#: templates/frontend/login.html:122
+msgid "Don’t have an account?"
+msgstr ""
+
+#: templates/frontend/login.html:123 templates/frontend/signup.html:3
+#: templates/frontend/signup.html:14 templates/frontend/signup.html:19
+#: templates/frontend/signup.html:58
+msgid "Sign Up"
+msgstr ""
+
+#: templates/frontend/login.html:139
+msgid "Invalid email or password."
+msgstr ""
+
+#: templates/frontend/login.html:140
+msgid "Your email is not verified. A new verification link has been sent."
+msgstr ""
+
+#: templates/frontend/login.html:141
+msgid "Login failed."
+msgstr ""
+
+#: templates/frontend/login.html:142 templates/frontend/reset-password.html:137
+#: templates/frontend/signup.html:77 templates/frontend/verify.html:69
+msgid "Unable to reach server."
+msgstr ""
+
+#: templates/frontend/login.html:214
+msgid "Unable to start Google login."
+msgstr ""
+
+#: templates/frontend/oauth-callback.html:3
+msgid "Logging in..."
+msgstr ""
+
+#: templates/frontend/oauth-callback.html:51
+msgid "Loading..."
+msgstr ""
+
+#: templates/frontend/oauth-callback.html:53
+msgid "Please wait..."
+msgstr ""
+
+#: templates/frontend/oauth-callback.html:77
+msgid "Google login failed. Please try again."
+msgstr ""
+
+#: templates/frontend/partials/nav.html:63 templates/frontend/profile.html:3
+#: templates/frontend/profile.html:54 templates/frontend/profile.html:59
+msgid "Profile"
+msgstr ""
+
+#: templates/frontend/profile.html:60
+msgid "View and edit your personal information below."
+msgstr ""
+
+#: templates/frontend/profile.html:78
+msgid "User avatar"
+msgstr ""
+
+#: templates/frontend/profile.html:91
+msgid "Change avatar"
+msgstr ""
+
+#: templates/frontend/profile.html:100
+msgid "Clear avatar"
+msgstr ""
+
+#: templates/frontend/profile.html:126
+msgid "Edit name"
+msgstr ""
+
+#: templates/frontend/profile.html:148 templates/sqladmin/create.html:28
+#: templates/sqladmin/edit.html:28
+msgid "Save"
+msgstr ""
+
+#: templates/frontend/profile.html:172
+msgid "Articles"
+msgstr ""
+
+#: templates/frontend/profile.html:181
+msgid "Awards"
+msgstr ""
+
+#: templates/frontend/profile.html:192
+msgid "Followers"
+msgstr ""
+
+#: templates/frontend/profile.html:212 templates/frontend/profile.html:255
+msgid "Change Password"
+msgstr ""
+
+#: templates/frontend/profile.html:223
+msgid "Current Password"
+msgstr ""
+
+#: templates/frontend/profile.html:280
+msgid "Delete Profile Image"
+msgstr ""
+
+#: templates/frontend/profile.html:286
+msgid "Close"
+msgstr ""
+
+#: templates/frontend/profile.html:290
+msgid "Are you sure you want to delete your profile image?"
+msgstr ""
+
+#: templates/frontend/profile.html:297
+msgid "Yes, Delete"
+msgstr ""
+
+#: templates/frontend/profile.html:395
+msgid "Failed to update name."
+msgstr ""
+
+#: templates/frontend/profile.html:415
+msgid "Failed to upload profile image."
+msgstr ""
+
+#: templates/frontend/profile.html:444
+msgid "Failed to delete profile image."
+msgstr ""
+
+#: templates/frontend/profile.html:457
+#: templates/frontend/reset-password.html:83
+msgid "Passwords do not match."
+msgstr ""
+
+#: templates/frontend/profile.html:478
+msgid "Failed to change password."
+msgstr ""
+
+#: templates/frontend/profile.html:482
+msgid "Server error."
+msgstr ""
+
+#: templates/frontend/reset-password.html:10
+msgid "Reset Your Password"
+msgstr ""
+
+#: templates/frontend/reset-password.html:12
+msgid "Please enter your new password."
+msgstr ""
+
+#: templates/frontend/reset-password.html:23
+msgid "New password"
+msgstr ""
+
+#: templates/frontend/reset-password.html:71
+msgid "Invalid or missing token."
+msgstr ""
+
+#: templates/frontend/reset-password.html:100
+msgid "Your password has been reset. Redirecting to login..."
+msgstr ""
+
+#: templates/frontend/reset-password.html:113
+#: templates/frontend/reset-password.html:118
+msgid "Reset link is invalid or expired."
+msgstr ""
+
+#: templates/frontend/reset-password.html:123
+msgid "Password does not meet requirements."
+msgstr ""
+
+#: templates/frontend/reset-password.html:128
+#: templates/frontend/reset-password.html:131
+msgid "Unable to reset password."
+msgstr ""
+
+#: templates/frontend/signup.html:20
+msgid "Create a new account to get started."
+msgstr ""
+
+#: templates/frontend/signup.html:61
+msgid "Already have an account?"
+msgstr ""
+
+#: templates/frontend/signup.html:75
+msgid "Invalid input."
+msgstr ""
+
+#: templates/frontend/signup.html:76
+msgid "Registration failed."
+msgstr ""
+
+#: templates/frontend/verify-email.html:3
+#: templates/frontend/verify-email.html:11
+msgid "Verify Your Email"
+msgstr ""
+
+#: templates/frontend/verify-email.html:13
+msgid ""
+"Thank you for signing up! A verification link has been sent to your email"
+" address. Please check your inbox and click the link to activate your "
+"account."
+msgstr ""
+
+#: templates/frontend/verify.html:3 templates/frontend/verify.html:11
+msgid "Verify Email"
+msgstr ""
+
+#: templates/frontend/verify.html:12
+msgid "Verifying your email..."
+msgstr ""
+
+#: templates/frontend/verify.html:40
+msgid "Invalid verification link."
+msgstr ""
+
+#: templates/frontend/verify.html:52
+msgid "Email successfully verified! You can now log in."
+msgstr ""
+
+#: templates/frontend/verify.html:58
+msgid "Your verification link is invalid or has expired."
+msgstr ""
+
+#: templates/frontend/verify.html:61
+msgid "Your email address is already verified."
+msgstr ""
+
+#: templates/frontend/verify.html:64
+msgid "Verification failed."
+msgstr ""
+
+#: templates/frontend/partials/header.html:25
+#: templates/frontend/partials/sidebar.html:5
+#: templates/frontend/partials/sidebar.html:8 templates/sqladmin/list.html:76
+#: templates/sqladmin/list.html:78
+msgid "Search"
+msgstr ""
+
+#: templates/frontend/partials/nav.html:64 templates/sqladmin/layout.html:74
+msgid "Logout"
+msgstr ""
+
+#: templates/frontend/partials/sidebar.html:7
+msgid "Type & hit enter..."
+msgstr ""
+
+#: templates/frontend/partials/sidebar.html:25
+msgid "Recent Posts"
+msgstr ""
+
+#: templates/sqladmin/create.html:7 templates/sqladmin/list.html:35
+msgid "New"
+msgstr ""
+
+#: templates/sqladmin/create.html:29 templates/sqladmin/edit.html:29
+msgid "Save and continue editing"
+msgstr ""
+
+#: templates/sqladmin/create.html:30 templates/sqladmin/edit.html:34
+msgid "Save and add another"
+msgstr ""
+
+#: templates/sqladmin/edit.html:32
+msgid "Save as new"
+msgstr ""
+
+#: templates/sqladmin/index.html:33
+msgid "Dashboard"
+msgstr ""
+
+#: templates/sqladmin/index.html:34
+msgid "Overview of key metrics"
+msgstr ""
+
+#: templates/sqladmin/index.html:63
+msgid "Superusers"
+msgstr ""
+
+#: templates/sqladmin/index.html:71
+msgid "Account overview"
+msgstr ""
+
+#: templates/sqladmin/index.html:76
+msgid "Manage Users"
+msgstr ""
+
+#: templates/sqladmin/index.html:112
+msgid "Add New"
+msgstr ""
+
+#: templates/sqladmin/index.html:117
+msgid "View All"
+msgstr ""
+
+#: templates/sqladmin/index.html:127
+msgid "Total Posts"
+msgstr ""
+
+#: templates/sqladmin/index.html:152
+msgid "published"
+msgstr ""
+
+#: templates/sqladmin/index.html:153
+msgid "drafts"
+msgstr ""
+
+#: templates/sqladmin/index.html:159
+msgid "Content overview"
+msgstr ""
+
+#: templates/sqladmin/index.html:164
+msgid "Manage Posts"
+msgstr ""
+
+#: templates/sqladmin/index.html:181
+msgid "Communication"
+msgstr ""
+
+#: templates/sqladmin/index.html:187
+msgid "Total Contacts"
+msgstr ""
+
+#: templates/sqladmin/index.html:194
+msgid "Latest Contact"
+msgstr ""
+
+#: templates/sqladmin/index.html:198
+msgid "No contacts yet"
+msgstr ""
+
+#: templates/sqladmin/index.html:206
+msgid "Message inbox"
+msgstr ""
+
+#: templates/sqladmin/index.html:211 templates/sqladmin/index.html:331
+msgid "View Contacts"
+msgstr ""
+
+#: templates/sqladmin/index.html:226
+msgid "Resources & Quick Links"
+msgstr ""
+
+#: templates/sqladmin/index.html:239
+msgid "Visit Site"
+msgstr ""
+
+#: templates/sqladmin/index.html:240
+msgid "Go to the live application."
+msgstr ""
+
+#: templates/sqladmin/index.html:241
+msgid "Open Website"
+msgstr ""
+
+#: templates/sqladmin/index.html:252
+msgid "Documentation"
+msgstr ""
+
+#: templates/sqladmin/index.html:253
+msgid "Browse API docs and guides."
+msgstr ""
+
+#: templates/sqladmin/index.html:254
+msgid "Go to Docs"
+msgstr ""
+
+#: templates/sqladmin/index.html:265
+msgid "Support"
+msgstr ""
+
+#: templates/sqladmin/index.html:266
+msgid "Get help or report issues."
+msgstr ""
+
+#: templates/sqladmin/index.html:267
+msgid "Contact Support"
+msgstr ""
+
+#: templates/sqladmin/index.html:278
+msgid "Settings"
+msgstr ""
+
+#: templates/sqladmin/index.html:279
+msgid "Configure your application."
+msgstr ""
+
+#: templates/sqladmin/index.html:280
+msgid "Manage Settings"
+msgstr ""
+
+#: templates/sqladmin/index.html:291
+msgid "Analytics"
+msgstr ""
+
+#: templates/sqladmin/index.html:292
+msgid "View analytics reports."
+msgstr ""
+
+#: templates/sqladmin/index.html:293
+msgid "View Analytics"
+msgstr ""
+
+#: templates/sqladmin/index.html:301
+msgid "See All Resources"
+msgstr ""
+
+#: templates/sqladmin/index.html:311
+msgid "Quick Actions"
+msgstr ""
+
+#: templates/sqladmin/index.html:319
+msgid "Add User"
+msgstr ""
+
+#: templates/sqladmin/index.html:325
+msgid "New Post"
+msgstr ""
+
+#: templates/sqladmin/list.html:47
+msgid "Actions"
+msgstr ""
+
+#: templates/sqladmin/list.html:54
+msgid "Delete selected items"
+msgstr ""
+
+#: templates/sqladmin/list.html:175
+msgid "prev"
+msgstr ""
+
+#: templates/sqladmin/list.html:188
+msgid "next"
+msgstr ""
+
+#: templates/sqladmin/list.html:194
+msgid "Show"
+msgstr ""
+
+#: templates/sqladmin/list.html:197 templates/sqladmin/list.html:202
+msgid "Page"
+msgstr ""
+
+#: templates/sqladmin/login.html:6
+msgid "Welcome to the Admin Panel"
+msgstr ""
+
+#: templates/sqladmin/login.html:10 templates/sqladmin/login.html:14
+msgid "Enter email"
+msgstr ""
+
+#: templates/sqladmin/login.html:23 templates/sqladmin/login.html:27
+msgid "Enter password"
+msgstr ""
+
+#: templates/sqladmin/modals/delete.html:8
+msgid "Please confirm"
+msgstr ""
+
+#: templates/sqladmin/modals/details_action_confirmation.html:21
+#: templates/sqladmin/modals/list_action_confirmation.html:21
+msgid "Yes"
+msgstr ""

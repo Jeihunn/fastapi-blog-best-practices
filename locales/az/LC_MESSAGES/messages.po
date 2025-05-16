@@ -1,0 +1,1279 @@
+# Azerbaijani translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-05-16 17:40+0400\n"
+"PO-Revision-Date: 2025-05-14 01:20+0400\n"
+"Last-Translator: \n"
+"Language: az\n"
+"Language-Team: az <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: src/auth/manager.py:69 templates/emails/verify_email.html:3
+#: templates/emails/verify_email.html:4
+msgid "Email Verification Request"
+msgstr "E-poçt Doğrulama Tələbi"
+
+#: src/auth/manager.py:99 templates/emails/reset_password.html:3
+#: templates/emails/reset_password.html:4
+msgid "Password Reset Request"
+msgstr "Parol Sıfırlama Tələbi"
+
+#: src/auth/manager.py:116
+#, python-format
+msgid "Password must be at least %(min_length)d characters long."
+msgstr "Parol ən az %(min_length)d simvoldan ibarət olmalıdır."
+
+#: src/auth/manager.py:126
+msgid "Password cannot contain parts of your email address."
+msgstr "Parolda e-poçt ünvanınızın hissələri ola bilməz."
+
+#: src/auth/manager.py:133
+msgid "Password must include at least one uppercase letter."
+msgstr "Parolda ən azı bir böyük hərf olmalıdır."
+
+#: src/auth/manager.py:139
+msgid "Password must include at least one lowercase letter."
+msgstr "Parolda ən azı bir kiçik hərf olmalıdır."
+
+#: src/auth/manager.py:145
+msgid "Password must include at least one digit."
+msgstr "Parol ən azı bir rəqəmdən ibarət olmalıdır."
+
+#: src/auth/manager.py:152
+msgid "Password must include at least one special character (e.g. !@#%)."
+msgstr "Parolda ən azı bir xüsusi simvol olmalıdır (məsələn, !@#%)."
+
+#: src/blogs/admin.py:15 src/blogs/models.py:45
+msgid "Category"
+msgstr "Kateqoriya"
+
+#: src/blogs/admin.py:16 src/blogs/models.py:204
+#: templates/frontend/partials/sidebar.html:17
+msgid "Categories"
+msgstr "Kateqoriyalar"
+
+#: src/blogs/admin.py:18 src/blogs/admin.py:65 src/blogs/admin.py:112
+#: src/blogs/admin.py:223 src/blogs/admin.py:271
+msgid "Blog"
+msgstr "Bloq"
+
+#: src/blogs/admin.py:62 src/blogs/models.py:65
+msgid "Tag"
+msgstr "Etiket"
+
+#: src/blogs/admin.py:63 src/blogs/models.py:211
+#: templates/frontend/partials/sidebar.html:33
+msgid "Tags"
+msgstr "Etiketlər"
+
+#: src/blogs/admin.py:109 src/blogs/models.py:294 src/blogs/models.py:334
+msgid "Blog post"
+msgstr "Bloq yazısı"
+
+#: src/blogs/admin.py:110 src/blogs/models.py:97 src/blogs/models.py:129
+#: src/users/models.py:75
+msgid "Blog posts"
+msgstr "Bloq yazıları"
+
+#: src/blogs/admin.py:141
+msgid "Likes count"
+msgstr "Bəyənmə sayı"
+
+#: src/blogs/admin.py:142
+msgid "Comments count"
+msgstr "Şərh sayı"
+
+#: src/blogs/admin.py:220
+msgid "Comment"
+msgstr "Şərh"
+
+#: src/blogs/admin.py:221 src/blogs/models.py:219 src/users/models.py:83
+#: templates/frontend/blog-details.html:146 templates/frontend/index.html:299
+msgid "Comments"
+msgstr "Şərhlər"
+
+#: src/blogs/admin.py:268
+msgid "Blog like"
+msgstr "Bloq bəyənməsi"
+
+#: src/blogs/admin.py:269
+msgid "Blog likes"
+msgstr "Bloq bəyənmələri"
+
+#: src/blogs/models.py:38 src/blogs/models.py:58
+msgid "BlogPost"
+msgstr "BloqYazısı"
+
+#: src/blogs/models.py:81 src/blogs/models.py:113 src/essentials/models.py:24
+msgid "Name"
+msgstr "Ad"
+
+#: src/blogs/models.py:88 src/blogs/models.py:120 src/blogs/models.py:189
+msgid "Slug"
+msgstr "Slug"
+
+#: src/blogs/models.py:146
+msgid "Author ID"
+msgstr "Müəllif ID"
+
+#: src/blogs/models.py:153
+msgid "Title"
+msgstr "Başlıq"
+
+#: src/blogs/models.py:158 src/blogs/models.py:281
+#: templates/sqladmin/index.html:94
+msgid "Content"
+msgstr "Məzmun"
+
+#: src/blogs/models.py:164
+msgid "Cover image"
+msgstr "Əsas şəkil"
+
+#: src/blogs/models.py:176 templates/sqladmin/index.html:132
+msgid "Published"
+msgstr "Nəşr olundu"
+
+#: src/blogs/models.py:182
+msgid "Published at"
+msgstr "Nəşr tarixi"
+
+#: src/blogs/models.py:197
+msgid "Author"
+msgstr "Müəllif"
+
+#: src/blogs/models.py:227 templates/frontend/blog-details.html:151
+msgid "Likes"
+msgstr "Bəyənmələr"
+
+#: src/blogs/models.py:267 src/blogs/models.py:314 src/users/admin.py:242
+msgid "User ID"
+msgstr "İstifadəçi ID"
+
+#: src/blogs/models.py:274 src/blogs/models.py:321
+msgid "Blog post ID"
+msgstr "Bloq yazısı ID"
+
+#: src/blogs/models.py:289 src/blogs/models.py:329 src/users/admin.py:121
+msgid "User"
+msgstr "İstifadəçi"
+
+#: src/blogs/api/v1/router.py:155 src/blogs/api/v1/router.py:212
+#: src/blogs/api/v1/router.py:248 src/blogs/api/v1/router.py:288
+msgid "Blog post not found"
+msgstr "Bloq yazısı tapılmadı"
+
+#: src/common/models.py:128 src/users/admin.py:142 src/users/admin.py:241
+msgid "ID"
+msgstr "ID"
+
+#: src/common/models.py:143
+msgid "Created at"
+msgstr "Yaradılma tarixi"
+
+#: src/common/models.py:153 src/users/models.py:39
+msgid "Updated at"
+msgstr "Yenilənmə tarixi"
+
+#: src/common/admin/file_upload.py:78
+#, python-format
+msgid "No upload_to defined for file field '%(field)s'"
+msgstr "'%(field)s' fayl sahəsi üçün upload_to təyin edilməyib"
+
+#: src/common/errors/messages.py:8
+#, python-format
+msgid "value is not a valid email address: %(reason)s"
+msgstr "dəyər etibarlı e-poçt ünvanı deyil: %(reason)s"
+
+#: src/common/errors/messages.py:10
+msgid "The part after the @-sign is not valid. It should have a period."
+msgstr "@ işarəsindən sonrakı hissə etibarlı deyil. Orada nöqtə olmalıdır."
+
+#: src/common/errors/messages.py:11
+msgid "There must be something after the @-sign."
+msgstr "@ işarəsindən sonra nəsə olmalıdır."
+
+#: src/common/errors/messages.py:12
+msgid "There must be something before the @-sign."
+msgstr "@ işarəsindən əvvəl nəsə olmalıdır."
+
+#: src/common/errors/messages.py:18
+msgid "value is not a valid phone number"
+msgstr "dəyər etibarlı telefon nömrəsi deyil"
+
+#: src/common/errors/messages.py:23
+msgid "Field required"
+msgstr "Bu sahə tələb olunur"
+
+#: src/common/errors/messages.py:26
+#, python-format
+msgid "String should have at least %(min_length)d characters"
+msgstr "Mətn ən az %(min_length)d simvoldan ibarət olmalıdır"
+
+#: src/common/utils/file_helpers.py:87
+#, python-format
+msgid "Unsupported file type: %(type)s. Allowed types: %(allowed)s"
+msgstr "Dəstəklənməyən fayl tipi: %(type)s. İcazə verilən tiplər: %(allowed)s"
+
+#: src/core/storage.py:98
+#, python-format
+msgid "File too large (%(actual)s > %(allowed)s)"
+msgstr "Fayl çox böyükdür (%(actual)s > %(allowed)s)"
+
+#: src/essentials/admin.py:11 templates/frontend/contact.html:3
+#: templates/frontend/contact.html:14 templates/frontend/contact.html:20
+#: templates/frontend/partials/nav.html:34
+msgid "Contact"
+msgstr "Əlaqə"
+
+#: src/essentials/admin.py:12
+msgid "Contacts"
+msgstr "Əlaqələr"
+
+#: src/essentials/admin.py:14
+msgid "General"
+msgstr "Ümumi"
+
+#: src/essentials/models.py:14 templates/frontend/contact.html:78
+msgid "Phone number"
+msgstr "Telefon nömrəsi"
+
+#: src/essentials/models.py:19 src/users/admin.py:143
+#: templates/sqladmin/login.html:8
+msgid "Email"
+msgstr "E-poçt"
+
+#: src/essentials/models.py:29
+msgid "Message"
+msgstr "Mesaj"
+
+#: src/essentials/api/v1/router.py:47
+msgid "An error occurred while submitting your message."
+msgstr "Mesajınızı göndərərkən xəta baş verdi."
+
+#: src/essentials/api/v1/router.py:50
+msgid "Your message has been received."
+msgstr "Mesajınız qəbul edildi."
+
+#: src/users/admin.py:28
+msgid "Reset password"
+msgstr "Parolu sıfırla"
+
+#: src/users/admin.py:93
+msgid "Both password fields must be non-empty strings."
+msgstr "Hər iki parol sahəsi boş ola bilməz."
+
+#: src/users/admin.py:103
+msgid "The passwords do not match."
+msgstr "Parollar uyğun gəlmir."
+
+#: src/users/admin.py:122 templates/sqladmin/index.html:52
+msgid "Users"
+msgstr "İstifadəçilər"
+
+#: src/users/admin.py:124 src/users/admin.py:236
+msgid "Account"
+msgstr "Hesab"
+
+#: src/users/admin.py:144 templates/frontend/login.html:104
+#: templates/frontend/signup.html:54 templates/sqladmin/login.html:19
+msgid "Password"
+msgstr "Parol"
+
+#: src/users/admin.py:145
+msgid "Active"
+msgstr "Aktiv"
+
+#: src/users/admin.py:146
+msgid "Superuser"
+msgstr "Superistifadəçi"
+
+#: src/users/admin.py:147
+msgid "Verified"
+msgstr "Təsdiqlənib"
+
+#: src/users/admin.py:233
+msgid "OAuth account"
+msgstr "OAuth hesabı"
+
+#: src/users/admin.py:234 src/users/models.py:69
+msgid "OAuth accounts"
+msgstr "OAuth hesabları"
+
+#: src/users/admin.py:243
+msgid "OAuth name"
+msgstr "OAuth adı"
+
+#: src/users/admin.py:244
+msgid "Access token"
+msgstr ""
+
+#: src/users/admin.py:245
+msgid "Expires at"
+msgstr "Bitmə tarixi"
+
+#: src/users/admin.py:246
+msgid "Refresh token"
+msgstr ""
+
+#: src/users/admin.py:247
+msgid "Account ID"
+msgstr "Hesab ID"
+
+#: src/users/admin.py:248
+msgid "Account email"
+msgstr "Hesabın e-poçtu"
+
+#: src/users/models.py:27
+msgid "Date joined"
+msgstr "Qoşulma tarixi"
+
+#: src/users/models.py:32
+msgid "Last login"
+msgstr "Son giriş"
+
+#: src/users/models.py:44 templates/frontend/profile.html:137
+#: templates/frontend/signup.html:36
+msgid "First name"
+msgstr "Ad"
+
+#: src/users/models.py:49 templates/frontend/profile.html:144
+#: templates/frontend/signup.html:42
+msgid "Last name"
+msgstr "Soyad"
+
+#: src/users/models.py:55
+msgid "Profile image"
+msgstr "Profil şəkli"
+
+#: src/users/models.py:91
+msgid "Blog Likes"
+msgstr "Bloq bəyənmələri"
+
+#: src/users/api/v1/router.py:93
+#, python-format
+msgid "Model field '%(field)s' not found."
+msgstr "'%(field)s' model sahəsi tapılmadı."
+
+#: src/users/api/v1/router.py:130
+msgid "An error occurred while uploading the file."
+msgstr "Fayl yüklənərkən xəta baş verdi."
+
+#: src/users/api/v1/router.py:146
+msgid "Failed to update user profile with new image."
+msgstr "İstifadəçi profili yeni şəkillə yenilənmədi."
+
+#: src/users/api/v1/router.py:156
+msgid "Profile image updated successfully."
+msgstr "Profil şəkli uğurla yeniləndi."
+
+#: src/users/api/v1/router.py:192
+msgid "No profile image to clear."
+msgstr "Təmizlənəcək profil şəkli yoxdur."
+
+#: src/users/api/v1/router.py:202
+msgid "Failed to clear profile image from user record."
+msgstr "Profil şəklini istifadəçi qeydindən silmək mümkün olmadı."
+
+#: src/users/api/v1/router.py:262
+msgid "Current password is incorrect."
+msgstr "Hazırkı parol yanlışdır."
+
+#: src/users/api/v1/router.py:275
+msgid "Failed to update password hash."
+msgstr "Parol hash-i yenilənmədi."
+
+#: src/users/api/v1/router.py:291
+msgid "An error occurred while changing the password."
+msgstr "Parolu dəyişərkən xəta baş verdi."
+
+#: src/users/api/v1/router.py:294 templates/frontend/profile.html:472
+msgid "Password changed successfully."
+msgstr "Parol uğurla dəyişdirildi."
+
+#: templates/admin/users/UserAdmin/details.html:17
+#: templates/sqladmin/details.html:17
+msgid "Column"
+msgstr "Sütun"
+
+#: templates/admin/users/UserAdmin/details.html:18
+#: templates/sqladmin/details.html:18
+msgid "Value"
+msgstr "Dəyər"
+
+#: templates/admin/users/UserAdmin/details.html:50
+#: templates/sqladmin/details.html:50
+msgid "Go Back"
+msgstr "Geri qayıt"
+
+#: templates/admin/users/UserAdmin/details.html:58
+#: templates/sqladmin/details.html:58 templates/sqladmin/modals/delete.html:21
+msgid "Delete"
+msgstr "Sil"
+
+#: templates/admin/users/UserAdmin/details.html:65
+#: templates/sqladmin/details.html:65 templates/sqladmin/edit.html:7
+msgid "Edit"
+msgstr "Redaktə et"
+
+#: templates/admin/users/UserAdmin/details.html:71
+#: templates/admin/users/UserAdmin/reset_password.html:64
+#: templates/frontend/reset-password.html:3
+#: templates/frontend/reset-password.html:37
+msgid "Reset Password"
+msgstr "Parolu sıfırla"
+
+#: templates/admin/users/UserAdmin/reset_password.html:6
+msgid "Reset Password for"
+msgstr "Üçün parolu sıfırla"
+
+#: templates/admin/users/UserAdmin/reset_password.html:22
+#: templates/frontend/profile.html:234
+msgid "New Password"
+msgstr "Yeni parol"
+
+#: templates/admin/users/UserAdmin/reset_password.html:29
+msgid "Enter new password"
+msgstr "Yeni parolu daxil edin"
+
+#: templates/admin/users/UserAdmin/reset_password.html:36
+#: templates/frontend/profile.html:245
+msgid "Confirm Password"
+msgstr "Parolu təsdiqləyin"
+
+#: templates/admin/users/UserAdmin/reset_password.html:43
+#: templates/frontend/reset-password.html:32
+msgid "Confirm new password"
+msgstr "Yeni parolu təsdiqləyin"
+
+#: templates/admin/users/UserAdmin/reset_password.html:56
+#: templates/frontend/profile.html:155 templates/frontend/profile.html:294
+#: templates/sqladmin/create.html:23 templates/sqladmin/edit.html:23
+#: templates/sqladmin/modals/delete.html:16
+#: templates/sqladmin/modals/details_action_confirmation.html:16
+#: templates/sqladmin/modals/list_action_confirmation.html:16
+msgid "Cancel"
+msgstr "Ləğv et"
+
+#: templates/emails/base_email.html:5 templates/emails/base_email.html:29
+msgid "Notification"
+msgstr "Bildiriş"
+
+#: templates/emails/base_email.html:48
+msgid ""
+"If you have any questions or require additional assistance, please do not"
+" hesitate to contact us at"
+msgstr ""
+"Əgər hər hansı sualınız varsa və ya əlavə yardıma ehtiyacınız olarsa, "
+"bizimlə əlaqə saxlamaqdan çəkinməyin"
+
+#: templates/emails/base_email.html:56
+msgid "Sincerely,"
+msgstr "Hörmətlə,"
+
+#: templates/emails/reset_password.html:8
+msgid "Hello"
+msgstr "Salam"
+
+#: templates/emails/reset_password.html:11
+msgid ""
+"We received a request to reset your password. If you did not make this "
+"request, please disregard this email. Otherwise, click the button below "
+"to reset your password."
+msgstr ""
+"Parolunuzu sıfırlamaq üçün sorğu alındı. Əgər bu sorğunu siz "
+"göndərməmisinizsə, bu e-poçtu nəzərə almayın. Əks halda, parolunuzu "
+"sıfırlamaq üçün aşağıdakı düyməni basın."
+
+#: templates/emails/reset_password.html:20
+msgid "Reset My Password"
+msgstr "Parolumu sıfırla"
+
+#: templates/emails/verify_email.html:8
+#, python-format
+msgid "Hello %(email)s,"
+msgstr "Salam %(email)s,"
+
+#: templates/emails/verify_email.html:11
+msgid ""
+"Thank you for signing up! To complete your registration, please verify "
+"your email by clicking the button below."
+msgstr ""
+"Qeydiyyat üçün təşəkkür edirik! Qeydiyyatınızı tamamlamaq üçün aşağıdakı "
+"düyməni basaraq e-poçtunuzu təsdiqləyin."
+
+#: templates/emails/verify_email.html:18
+msgid "Verify Now"
+msgstr "İndi təsdiqlə"
+
+#: templates/emails/verify_email.html:22
+msgid "If you did not sign up with us, simply ignore this message."
+msgstr "Əgər bizə qeydiyyatdan keçməmisinizsə, bu mesajı nəzərə almayın."
+
+#: templates/frontend/404.html:3
+msgid "Page Not Found"
+msgstr "Səhifə tapılmadı"
+
+#: templates/frontend/404.html:19
+msgid "Oops! Page Not Found"
+msgstr "Ups! Səhifə tapılmadı"
+
+#: templates/frontend/404.html:23
+msgid ""
+"The page you are looking for might have been removed, had its name "
+"changed, or is temporarily unavailable."
+msgstr ""
+"Axtardığınız səhifə silinmiş, adı dəyişdirilmiş və ya müvəqqəti olaraq "
+"əlçatmaz ola bilər."
+
+#: templates/frontend/404.html:28
+msgid "Back to Home"
+msgstr "Ana səhifəyə qayıt"
+
+#: templates/frontend/about.html:3 templates/frontend/about.html:14
+#: templates/frontend/about.html:20 templates/frontend/partials/nav.html:26
+msgid "About"
+msgstr "Haqqında"
+
+#: templates/frontend/about.html:12 templates/frontend/blog-details.html:12
+#: templates/frontend/blogs.html:13 templates/frontend/contact.html:12
+#: templates/frontend/index.html:3 templates/frontend/login.html:46
+#: templates/frontend/partials/nav.html:10 templates/frontend/profile.html:51
+#: templates/frontend/signup.html:12
+msgid "Home"
+msgstr "Ana səhifə"
+
+#: templates/frontend/blog-details.html:3
+#: templates/frontend/blog-details.html:15
+msgid "Blog Details"
+msgstr "Bloq detalları"
+
+#: templates/frontend/blog-details.html:37
+msgid "Discussion"
+msgstr "Müzakirə"
+
+#: templates/frontend/blog-details.html:60
+msgid "Your Comment"
+msgstr "Şərhiniz"
+
+#: templates/frontend/blog-details.html:65
+msgid "Write your thoughts here."
+msgstr "Fikirlərinizi buraya yazın."
+
+#: templates/frontend/blog-details.html:71
+msgid "Post Comment"
+msgstr "Şərhi göndər"
+
+#: templates/frontend/blog-details.html:77
+msgid "Please"
+msgstr "Zəhmət olmasa"
+
+#: templates/frontend/blog-details.html:78
+msgid "log in"
+msgstr "daxil olun"
+
+#: templates/frontend/blog-details.html:79
+msgid "to post a comment."
+msgstr "şərh yazmaq üçün."
+
+#: templates/frontend/blog-details.html:192
+msgid "Related Topics"
+msgstr "Aid mövzular"
+
+#: templates/frontend/blog-details.html:200
+msgid "Share Article"
+msgstr "Məqaləni paylaş"
+
+#: templates/frontend/blog-details.html:205
+msgid "Copy Link"
+msgstr "Linki kopyala"
+
+#: templates/frontend/blogs.html:3 templates/frontend/blogs.html:16
+#: templates/frontend/blogs.html:21 templates/frontend/partials/nav.html:18
+msgid "Blogs"
+msgstr "Bloqlar"
+
+#: templates/frontend/blogs.html:22
+msgid "Discover our latest articles and updates."
+msgstr "Son məqalə və yeniliklərimizi kəşf edin."
+
+#: templates/frontend/blogs.html:105 templates/frontend/index.html:226
+#: templates/frontend/index.html:407
+msgid "No posts available."
+msgstr "Yazı yoxdur."
+
+#: templates/frontend/contact.html:38
+msgid "Our Address"
+msgstr "Ünvanımız"
+
+#: templates/frontend/contact.html:48
+msgid "Contact Number"
+msgstr "Əlaqə nömrəsi"
+
+#: templates/frontend/contact.html:61
+msgid "Opening Hour"
+msgstr "İş saatı"
+
+#: templates/frontend/contact.html:84 templates/frontend/index.html:180
+#: templates/frontend/index.html:181 templates/frontend/login.html:91
+#: templates/frontend/signup.html:48
+msgid "Email address"
+msgstr "E-poçt ünvanı"
+
+#: templates/frontend/contact.html:92
+msgid "Your name"
+msgstr "Adınız"
+
+#: templates/frontend/contact.html:98
+msgid "Write a message"
+msgstr "Mesaj yazın"
+
+#: templates/frontend/contact.html:102 templates/frontend/index.html:192
+msgid "Loading"
+msgstr "Yüklənir"
+
+#: templates/frontend/contact.html:104
+msgid "Your message has been sent. Thank you!"
+msgstr "Mesajınız göndərildi. Təşəkkür edirik!"
+
+#: templates/frontend/contact.html:107
+msgid "Submit Message"
+msgstr "Mesaj Gönder"
+
+#: templates/frontend/contact.html:155
+msgid "Failed to send message."
+msgstr "Mesaj göndərmək mümkün olmadı."
+
+#: templates/frontend/contact.html:166
+msgid "Unable to send. Please try again later."
+msgstr "Göndərmək mümkün deyil. Zəhmət olmasa sonra yenidən cəhd edin."
+
+#: templates/frontend/forgot-password.html:3
+#: templates/frontend/forgot-password.html:14
+#: templates/frontend/forgot-password.html:19
+msgid "Forgot Password"
+msgstr "Parolu unutdum"
+
+#: templates/frontend/forgot-password.html:12
+#: templates/frontend/forgot-password.html:50 templates/frontend/login.html:3
+#: templates/frontend/login.html:48 templates/frontend/login.html:53
+#: templates/frontend/login.html:111 templates/frontend/partials/nav.html:45
+#: templates/frontend/signup.html:61 templates/sqladmin/login.html:32
+msgid "Login"
+msgstr "Giriş"
+
+#: templates/frontend/forgot-password.html:20
+msgid "Enter your email and we’ll send you a link to reset your password."
+msgstr "E-poçtunuzu daxil edin, parolu sıfırlamaq üçün link göndərəcəyik."
+
+#: templates/frontend/forgot-password.html:41
+msgid "Your email address"
+msgstr "E-poçt ünvanınız"
+
+#: templates/frontend/forgot-password.html:47
+msgid "Send Reset Link"
+msgstr "Linki göndər"
+
+#: templates/frontend/forgot-password.html:50
+msgid "Remembered?"
+msgstr "Xatırladınız?"
+
+#: templates/frontend/forgot-password.html:64
+msgid "We’ve sent a password reset link to your email. Please check your inbox."
+msgstr ""
+"Parolu sıfırlamaq üçün link e-poçtunuza göndərildi. Zəhmət olmasa poçt "
+"qutunuzu yoxlayın."
+
+#: templates/frontend/forgot-password.html:65
+msgid "Unable to send reset link. Please try again later."
+msgstr "Linki göndərmək mümkün olmadı. Zəhmət olmasa sonradan yenidən cəhd edin."
+
+#: templates/frontend/index.html:18 templates/frontend/index.html:21
+msgid "Featured Posts"
+msgstr "Seçilmiş yazılar"
+
+#: templates/frontend/index.html:20 templates/frontend/index.html:145
+msgid "Check Our"
+msgstr "Yoxlayın"
+
+#: templates/frontend/index.html:63 templates/frontend/index.html:64
+msgid "Category Section"
+msgstr "Kateqoriya bölməsi"
+
+#: templates/frontend/index.html:86
+msgid "Don't Miss"
+msgstr "Qaçırmayın"
+
+#: templates/frontend/index.html:87
+msgid "Revolutionize Your Digital Experience Today"
+msgstr "Bu gün rəqəmsal təcrübənizdə inqilab edin"
+
+#: templates/frontend/index.html:89
+msgid ""
+"Strategia accelerates your business growth through innovative solutions "
+"and cutting-edge technology. Join thousands of satisfied customers who "
+"have transformed their operations."
+msgstr ""
+"Strategia innovativ həllər və ən müasir texnologiya vasitəsilə "
+"biznesinizin inkişafını sürətləndirir. Əməliyyatlarını dəyişdirən "
+"minlərlə məmnun müştəriyə qoşulun."
+
+#: templates/frontend/index.html:94
+msgid "Premium Support"
+msgstr "Premium dəstək"
+
+#: templates/frontend/index.html:98
+msgid "Cloud Integration"
+msgstr "Bulud inteqrasiyası"
+
+#: templates/frontend/index.html:102
+msgid "Real-time Analytics"
+msgstr "Real vaxt analitikası"
+
+#: templates/frontend/index.html:106
+msgid "Start Free Trial"
+msgstr "Pulsuz sınağa başlayın"
+
+#: templates/frontend/index.html:107
+msgid "Learn More"
+msgstr "Ətraflı öyrənin"
+
+#: templates/frontend/index.html:117
+msgid "Digital Platform"
+msgstr "Rəqəmsal platforma"
+
+#: templates/frontend/index.html:126
+msgid "Growth Rate"
+msgstr "İnkişaf tempi"
+
+#: templates/frontend/index.html:143 templates/frontend/index.html:146
+msgid "Latest Posts"
+msgstr "Son yazılar"
+
+#: templates/frontend/index.html:165
+msgid "Subscribe to our newsletter"
+msgstr "Bülletenimizə abunə olun"
+
+#: templates/frontend/index.html:189
+msgid "Subscribe"
+msgstr "Abunə ol"
+
+#: templates/frontend/index.html:194
+msgid "Your subscription request has been sent. Thank you!"
+msgstr "Abunəlik sorğunuz göndərildi. Təşəkkür edirik!"
+
+#: templates/frontend/index.html:202
+msgid "Call to action image"
+msgstr "Çağırış rəsmi"
+
+#: templates/frontend/index.html:271
+msgid "Failed to load posts."
+msgstr "Yazılar yüklənə bilmədi."
+
+#: templates/frontend/index.html:284
+msgid "No featured posts."
+msgstr "Seçilmiş yazı yoxdur."
+
+#: templates/frontend/index.html:304
+msgid "Read More"
+msgstr "Daha çox oxu"
+
+#: templates/frontend/index.html:316
+msgid "Failed to load featured posts."
+msgstr "Seçilmiş yazılar yüklənmədi."
+
+#: templates/frontend/index.html:380
+msgid "mins read"
+msgstr "dəq. oxu"
+
+#: templates/frontend/index.html:394
+msgid "Failed to load category posts."
+msgstr "Kateqoriya yazıları yüklənmədi."
+
+#: templates/frontend/index.html:438
+msgid "Failed to load latest posts."
+msgstr "Ən son yazılar yüklənmədi."
+
+#: templates/frontend/login.html:54
+msgid "Please enter your credentials to access your account."
+msgstr "Hesabınıza daxil olmaq üçün giriş məlumatlarınızı daxil edin."
+
+#: templates/frontend/login.html:79
+msgid "Continue with Google"
+msgstr "Google ilə davam et"
+
+#: templates/frontend/login.html:116
+msgid "Forgot your password?"
+msgstr "Parolunuzu unutmusunuz?"
+
+#: templates/frontend/login.html:122
+msgid "Don’t have an account?"
+msgstr "Hesabınız yoxdur?"
+
+#: templates/frontend/login.html:123 templates/frontend/signup.html:3
+#: templates/frontend/signup.html:14 templates/frontend/signup.html:19
+#: templates/frontend/signup.html:58
+msgid "Sign Up"
+msgstr "Qeydiyyatdan keçin"
+
+#: templates/frontend/login.html:139
+msgid "Invalid email or password."
+msgstr "E-poçt ünvanı və ya parol yanlışdır."
+
+#: templates/frontend/login.html:140
+msgid "Your email is not verified. A new verification link has been sent."
+msgstr "E-poçt ünvanınız təsdiqlənməyib. Yeni təsdiqləmə linki göndərildi."
+
+#: templates/frontend/login.html:141
+msgid "Login failed."
+msgstr "Giriş mümkün olmadı."
+
+#: templates/frontend/login.html:142 templates/frontend/reset-password.html:137
+#: templates/frontend/signup.html:77 templates/frontend/verify.html:69
+msgid "Unable to reach server."
+msgstr "Serverə qoşulmaq mümkün deyil."
+
+#: templates/frontend/login.html:214
+msgid "Unable to start Google login."
+msgstr "Google girişi başlada bilmədik."
+
+#: templates/frontend/oauth-callback.html:3
+msgid "Logging in..."
+msgstr "Daxil olunur..."
+
+#: templates/frontend/oauth-callback.html:51
+msgid "Loading..."
+msgstr "Yüklənir..."
+
+#: templates/frontend/oauth-callback.html:53
+msgid "Please wait..."
+msgstr "Zəhmət olmasa gözləyin..."
+
+#: templates/frontend/oauth-callback.html:77
+msgid "Google login failed. Please try again."
+msgstr "Google girişi alınmadı. Zəhmət olmasa yenidən cəhd edin."
+
+#: templates/frontend/partials/nav.html:63 templates/frontend/profile.html:3
+#: templates/frontend/profile.html:54 templates/frontend/profile.html:59
+msgid "Profile"
+msgstr "Profil"
+
+#: templates/frontend/profile.html:60
+msgid "View and edit your personal information below."
+msgstr "Aşağıdakı şəxsi məlumatlarınıza baxın və redaktə edin."
+
+#: templates/frontend/profile.html:78
+msgid "User avatar"
+msgstr "İstifadəçi avatar"
+
+#: templates/frontend/profile.html:91
+msgid "Change avatar"
+msgstr "Avatarı dəyişdirin"
+
+#: templates/frontend/profile.html:100
+msgid "Clear avatar"
+msgstr "Avatarı təmizləyin"
+
+#: templates/frontend/profile.html:126
+msgid "Edit name"
+msgstr "Adı redaktə edin"
+
+#: templates/frontend/profile.html:148 templates/sqladmin/create.html:28
+#: templates/sqladmin/edit.html:28
+msgid "Save"
+msgstr "Yadda saxla"
+
+#: templates/frontend/profile.html:172
+msgid "Articles"
+msgstr "Məqalələr"
+
+#: templates/frontend/profile.html:181
+msgid "Awards"
+msgstr "Mükafatlar"
+
+#: templates/frontend/profile.html:192
+msgid "Followers"
+msgstr "İzləyicilər"
+
+#: templates/frontend/profile.html:212 templates/frontend/profile.html:255
+msgid "Change Password"
+msgstr "Parolun dəyişdirilməsi"
+
+#: templates/frontend/profile.html:223
+msgid "Current Password"
+msgstr "Cari Parol"
+
+#: templates/frontend/profile.html:280
+msgid "Delete Profile Image"
+msgstr "Profil şəklini silin"
+
+#: templates/frontend/profile.html:286
+msgid "Close"
+msgstr "Bağlayın"
+
+#: templates/frontend/profile.html:290
+msgid "Are you sure you want to delete your profile image?"
+msgstr "Profil şəklinizi silmək istədiyinizə əminsiniz?"
+
+#: templates/frontend/profile.html:297
+msgid "Yes, Delete"
+msgstr "Bəli, Sil"
+
+#: templates/frontend/profile.html:395
+msgid "Failed to update name."
+msgstr "Adı yeniləmək alınmadı."
+
+#: templates/frontend/profile.html:415
+msgid "Failed to upload profile image."
+msgstr "Profil şəklini yükləmək alınmadı."
+
+#: templates/frontend/profile.html:444
+msgid "Failed to delete profile image."
+msgstr "Profil şəklini silmək alınmadı."
+
+#: templates/frontend/profile.html:457
+#: templates/frontend/reset-password.html:83
+msgid "Passwords do not match."
+msgstr "Parollar uyğun gəlmir."
+
+#: templates/frontend/profile.html:478
+msgid "Failed to change password."
+msgstr "Parolu dəyişdirmək alınmadı."
+
+#: templates/frontend/profile.html:482
+msgid "Server error."
+msgstr "Server xətası."
+
+#: templates/frontend/reset-password.html:10
+msgid "Reset Your Password"
+msgstr "Parolunuzu Sıfırlayın"
+
+#: templates/frontend/reset-password.html:12
+msgid "Please enter your new password."
+msgstr "Zəhmət olmasa yeni parolunuzu daxil edin."
+
+#: templates/frontend/reset-password.html:23
+msgid "New password"
+msgstr "Yeni parol"
+
+#: templates/frontend/reset-password.html:71
+msgid "Invalid or missing token."
+msgstr "Yanlış və ya çatışmayan token."
+
+#: templates/frontend/reset-password.html:100
+msgid "Your password has been reset. Redirecting to login..."
+msgstr "Parolunuz sıfırlandı. Daxil olmaq üçün yönləndirilir..."
+
+#: templates/frontend/reset-password.html:113
+#: templates/frontend/reset-password.html:118
+msgid "Reset link is invalid or expired."
+msgstr "Sıfırlama linki etibarsızdır və ya vaxtı keçmişdir."
+
+#: templates/frontend/reset-password.html:123
+msgid "Password does not meet requirements."
+msgstr "Parol tələblərə cavab vermir."
+
+#: templates/frontend/reset-password.html:128
+#: templates/frontend/reset-password.html:131
+msgid "Unable to reset password."
+msgstr "Parolu sıfırlamaq mümkün deyil."
+
+#: templates/frontend/signup.html:20
+msgid "Create a new account to get started."
+msgstr "Başlamaq üçün yeni hesab yaradın."
+
+#: templates/frontend/signup.html:61
+msgid "Already have an account?"
+msgstr "Artıq hesabınız var?"
+
+#: templates/frontend/signup.html:75
+msgid "Invalid input."
+msgstr "Yanlış daxiletmə."
+
+#: templates/frontend/signup.html:76
+msgid "Registration failed."
+msgstr "Qeydiyyat uğursuz oldu."
+
+#: templates/frontend/verify-email.html:3
+#: templates/frontend/verify-email.html:11
+msgid "Verify Your Email"
+msgstr "E-poçtunuzu Doğrulayın"
+
+#: templates/frontend/verify-email.html:13
+msgid ""
+"Thank you for signing up! A verification link has been sent to your email"
+" address. Please check your inbox and click the link to activate your "
+"account."
+msgstr ""
+"Qeydiyyatdan keçdiyiniz üçün təşəkkür edirik! Doğrulama linki e-poçt "
+"ünvanınıza göndərildi. Zəhmət olmasa, gələnlər qutusunu yoxlayın və "
+"hesabınızı aktivləşdirmək üçün linkə klikləyin."
+
+#: templates/frontend/verify.html:3 templates/frontend/verify.html:11
+msgid "Verify Email"
+msgstr "E-poçtu Təsdiqləyin"
+
+#: templates/frontend/verify.html:12
+msgid "Verifying your email..."
+msgstr "E-poçtunuz təsdiqlənir..."
+
+#: templates/frontend/verify.html:40
+msgid "Invalid verification link."
+msgstr "Yanlış doğrulama linki."
+
+#: templates/frontend/verify.html:52
+msgid "Email successfully verified! You can now log in."
+msgstr "E-poçt uğurla təsdiqləndi! İndi daxil ola bilərsiniz."
+
+#: templates/frontend/verify.html:58
+msgid "Your verification link is invalid or has expired."
+msgstr "Doğrulama linkiniz etibarsızdır və ya vaxtı keçib."
+
+#: templates/frontend/verify.html:61
+msgid "Your email address is already verified."
+msgstr "E-poçt ünvanınız artıq təsdiqlənib."
+
+#: templates/frontend/verify.html:64
+msgid "Verification failed."
+msgstr "Doğrulama alınmadı."
+
+#: templates/frontend/partials/header.html:25
+#: templates/frontend/partials/sidebar.html:5
+#: templates/frontend/partials/sidebar.html:8 templates/sqladmin/list.html:76
+#: templates/sqladmin/list.html:78
+msgid "Search"
+msgstr "Axtar"
+
+#: templates/frontend/partials/nav.html:64 templates/sqladmin/layout.html:74
+msgid "Logout"
+msgstr "Çıxış"
+
+#: templates/frontend/partials/sidebar.html:7
+msgid "Type & hit enter..."
+msgstr "Yazın və Enter düyməsini basın..."
+
+#: templates/frontend/partials/sidebar.html:25
+msgid "Recent Posts"
+msgstr "Son yazılar"
+
+#: templates/sqladmin/create.html:7 templates/sqladmin/list.html:35
+msgid "New"
+msgstr "Yeni"
+
+#: templates/sqladmin/create.html:29 templates/sqladmin/edit.html:29
+msgid "Save and continue editing"
+msgstr "Saxla və redaktəyə davam et"
+
+#: templates/sqladmin/create.html:30 templates/sqladmin/edit.html:34
+msgid "Save and add another"
+msgstr "Saxla və yenisini əlavə et"
+
+#: templates/sqladmin/edit.html:32
+msgid "Save as new"
+msgstr "Yeni kimi saxla"
+
+#: templates/sqladmin/index.html:33
+msgid "Dashboard"
+msgstr ""
+
+#: templates/sqladmin/index.html:34
+msgid "Overview of key metrics"
+msgstr "Əsas göstəricilərin icmalı"
+
+#: templates/sqladmin/index.html:63
+msgid "Superusers"
+msgstr "Superistifadəçilər"
+
+#: templates/sqladmin/index.html:71
+msgid "Account overview"
+msgstr "Hesab icmalı"
+
+#: templates/sqladmin/index.html:76
+msgid "Manage Users"
+msgstr "İstifadəçiləri idarə et"
+
+#: templates/sqladmin/index.html:112
+msgid "Add New"
+msgstr "Yeni əlavə et"
+
+#: templates/sqladmin/index.html:117
+msgid "View All"
+msgstr "Hamısına bax"
+
+#: templates/sqladmin/index.html:127
+msgid "Total Posts"
+msgstr "Ümumi yazı sayı"
+
+#: templates/sqladmin/index.html:152
+msgid "published"
+msgstr "nəşr edildi"
+
+#: templates/sqladmin/index.html:153
+msgid "drafts"
+msgstr "taslaklar"
+
+#: templates/sqladmin/index.html:159
+msgid "Content overview"
+msgstr "Məzmunun icmalı"
+
+#: templates/sqladmin/index.html:164
+msgid "Manage Posts"
+msgstr "Yazıları idarə et"
+
+#: templates/sqladmin/index.html:181
+msgid "Communication"
+msgstr "Kommunikasiya"
+
+#: templates/sqladmin/index.html:187
+msgid "Total Contacts"
+msgstr "Ümumi əlaqələr"
+
+#: templates/sqladmin/index.html:194
+msgid "Latest Contact"
+msgstr "Son əlaqə"
+
+#: templates/sqladmin/index.html:198
+msgid "No contacts yet"
+msgstr "Hələ əlaqə yoxdur"
+
+#: templates/sqladmin/index.html:206
+msgid "Message inbox"
+msgstr "Mesaj qutusu"
+
+#: templates/sqladmin/index.html:211 templates/sqladmin/index.html:331
+msgid "View Contacts"
+msgstr "Əlaqələrə bax"
+
+#: templates/sqladmin/index.html:226
+msgid "Resources & Quick Links"
+msgstr "Resurslar və sürətli keçidlər"
+
+#: templates/sqladmin/index.html:239
+msgid "Visit Site"
+msgstr "Sayta daxil olun"
+
+#: templates/sqladmin/index.html:240
+msgid "Go to the live application."
+msgstr "Canlı tətbiqə keçin."
+
+#: templates/sqladmin/index.html:241
+msgid "Open Website"
+msgstr "Veb saytı aç"
+
+#: templates/sqladmin/index.html:252
+msgid "Documentation"
+msgstr "Sənədləşmə"
+
+#: templates/sqladmin/index.html:253
+msgid "Browse API docs and guides."
+msgstr "API sənədlərinə və təlimatlara baxın."
+
+#: templates/sqladmin/index.html:254
+msgid "Go to Docs"
+msgstr "Sənədlərə keçid"
+
+#: templates/sqladmin/index.html:265
+msgid "Support"
+msgstr "Dəstək"
+
+#: templates/sqladmin/index.html:266
+msgid "Get help or report issues."
+msgstr "Yardım alın və ya problemləri bildirin."
+
+#: templates/sqladmin/index.html:267
+msgid "Contact Support"
+msgstr "Dəstək xidməti ilə əlaqə"
+
+#: templates/sqladmin/index.html:278
+msgid "Settings"
+msgstr "Parametrlər"
+
+#: templates/sqladmin/index.html:279
+msgid "Configure your application."
+msgstr "Tətbiqinizi konfiqurasiya edin."
+
+#: templates/sqladmin/index.html:280
+msgid "Manage Settings"
+msgstr "Parametrləri idarə et"
+
+#: templates/sqladmin/index.html:291
+msgid "Analytics"
+msgstr "Analitika"
+
+#: templates/sqladmin/index.html:292
+msgid "View analytics reports."
+msgstr "Analitika hesabatlarına baxın."
+
+#: templates/sqladmin/index.html:293
+msgid "View Analytics"
+msgstr "Analitikaya baxın"
+
+#: templates/sqladmin/index.html:301
+msgid "See All Resources"
+msgstr "Bütün resurslara baxın"
+
+#: templates/sqladmin/index.html:311
+msgid "Quick Actions"
+msgstr "Sürətli əməliyyatlar"
+
+#: templates/sqladmin/index.html:319
+msgid "Add User"
+msgstr "İstifadəçi əlavə et"
+
+#: templates/sqladmin/index.html:325
+msgid "New Post"
+msgstr "Yeni yazı"
+
+#: templates/sqladmin/list.html:47
+msgid "Actions"
+msgstr "Əməliyyatlar"
+
+#: templates/sqladmin/list.html:54
+msgid "Delete selected items"
+msgstr "Seçilmiş elementləri sil"
+
+#: templates/sqladmin/list.html:175
+msgid "prev"
+msgstr "əvvəlki"
+
+#: templates/sqladmin/list.html:188
+msgid "next"
+msgstr "növbəti"
+
+#: templates/sqladmin/list.html:194
+msgid "Show"
+msgstr "Göstər"
+
+#: templates/sqladmin/list.html:197 templates/sqladmin/list.html:202
+msgid "Page"
+msgstr "Səhifə"
+
+#: templates/sqladmin/login.html:6
+msgid "Welcome to the Admin Panel"
+msgstr "İdarəetmə panelinə xoş gəlmisiniz"
+
+#: templates/sqladmin/login.html:10 templates/sqladmin/login.html:14
+msgid "Enter email"
+msgstr "E-poçt ünvanını daxil edin"
+
+#: templates/sqladmin/login.html:23 templates/sqladmin/login.html:27
+msgid "Enter password"
+msgstr "Parolu daxil edin"
+
+#: templates/sqladmin/modals/delete.html:8
+msgid "Please confirm"
+msgstr "Zəhmət olmasa təsdiqləyin"
+
+#: templates/sqladmin/modals/details_action_confirmation.html:21
+#: templates/sqladmin/modals/list_action_confirmation.html:21
+msgid "Yes"
+msgstr "Bəli"
