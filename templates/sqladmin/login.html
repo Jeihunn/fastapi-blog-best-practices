@@ -1,0 +1,37 @@
+{% extends "sqladmin/base.html" %}
+{% block body %}
+<div class="d-flex align-items-center justify-content-center vh-100">
+  <form class="Fcol-lg-6 col-md-6 card card-md" action="{{ url_for('admin:login') }}" method="POST" autocomplete="off">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">{{ _("Welcome to the Admin Panel") }}</h2>
+      <div class="mb-3">
+        <label class="form-label">{{ _("Email") }}</label>
+        {% if error %}
+        <input name="username" type="text" class="form-control is-invalid" placeholder="{{ _('Enter email') }}"
+          autocomplete="off">
+        <div class="invalid-feedback">{{ error }}</div>
+        {% else %}
+        <input name="username" type="text" class="form-control" placeholder="{{ _('Enter email') }}" autocomplete="off">
+        {% endif %}
+      </div>
+      <div class="mb-2">
+        <label class="form-label">
+          {{ _("Password") }}
+        </label>
+        <div class="input-group input-group-flat">
+          {% if error %}
+          <input name="password" type="password" class="form-control is-invalid" placeholder="{{ _('Enter password') }}"
+            autocomplete="off">
+          <div class="invalid-feedback">{{ error }}</div>
+          {% else %}
+          <input name="password" type="password" class="form-control" placeholder="{{ _('Enter password') }}" autocomplete="off">
+          {% endif %}
+        </div>
+      </div>
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary w-100">{{ _("Login") }}</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

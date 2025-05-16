@@ -1,0 +1,48 @@
+{% extends "sqladmin/create.html" %}
+
+{% block tail %}
+<!-- Quill CSS & JS -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const textarea = document.querySelector("#content");
+    if (!textarea) return;
+
+    textarea.style.display = "none";
+    const quillContainer = document.createElement("div");
+    quillContainer.id = "quill-editor";
+    quillContainer.style.height = "450px";
+    quillContainer.style.background = "#fff";
+    textarea.parentNode.insertBefore(quillContainer, textarea);
+
+    const quill = new Quill("#quill-editor", {
+      theme: "snow",
+      modules: {
+        toolbar: [
+          [{ font: [] }, { size: [] }],
+          ["bold", "italic", "underline", "strike"],
+          [{ color: [] }, { background: [] }],
+          [{ script: "sub" }, { script: "super" }],
+          [{ header: [1, 2, 3, 4, 5, 6, false] }],
+          ["blockquote", "code-block"],
+          [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+          [{ indent: "-1" }, { indent: "+1" }],
+          [{ direction: "rtl" }],
+          [{ align: [] }],
+          ["link", "image", "video", "formula"],
+          ["clean"],
+        ],
+        history: { delay: 2000, maxStack: 100 },
+      },
+    });
+
+    quill.root.innerHTML = textarea.value;
+
+    textarea.closest("form").addEventListener("submit", function () {
+      textarea.value = quill.root.innerHTML;
+    });
+  });
+</script>
+{% endblock %}

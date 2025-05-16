@@ -1,0 +1,338 @@
+{% extends "sqladmin/layout.html" %}
+
+{% block head %}
+<style>
+  .hover-shadow:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  }
+  .card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  .icon-container {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .user-stats {
+    transition: background-color 0.2s ease;
+  }
+  .user-stats:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+</style>
+{% endblock %}
+
+{% block content_header %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h2 class="page-title mb-0">{{ _("Dashboard") }}</h2>
+    <small class="text-muted">{{ _("Overview of key metrics") }}</small>
+  </div>
+</div>
+{% endblock content_header %}
+
+{% block content %}
+<div class="row g-4">
+  <!-- Users Card (Combined) -->
+  <div class="col-sm-6 col-lg-4">
+    <div class="card shadow-sm h-100 border-0 hover-shadow">
+      <div class="card-body p-0">
+        <div class="d-flex">
+          <!-- Total Users Section -->
+          <div class="user-stats p-4 flex-fill border-end">
+            <div class="d-flex align-items-center mb-3">
+              <div class="icon-container bg-primary-subtle rounded-circle me-3">
+                <i class="fa-solid fa-users fa-lg text-primary"></i>
+              </div>
+              <h5 class="mb-0">{{ _("Users") }}</h5>
+            </div>
+            <h3 class="fw-bold mb-1">{{ metrics.total_users }}</h3>
+          </div>
+
+          <!-- Superusers Section -->
+          <div class="user-stats p-4 flex-fill">
+            <div class="d-flex align-items-center mb-3">
+              <div class="icon-container bg-warning-subtle rounded-circle me-3">
+                <i class="fa-solid fa-user-shield fa-lg text-warning"></i>
+              </div>
+              <h5 class="mb-0">{{ _("Superusers") }}</h5>
+            </div>
+            <h3 class="fw-bold mb-1">{{ metrics.total_superusers }}</h3>
+          </div>
+        </div>
+
+        <div class="card-footer bg-white p-3 border-top">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-muted">{{ _("Account overview") }}</span>
+            <a
+              href="{{ url_for('admin:list', identity='user') }}"
+              class="btn btn-sm btn-primary"
+            >
+              {{ _("Manage Users") }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Stats Card -->
+  <div class="col-sm-6 col-lg-4">
+    <div class="card shadow-sm h-100 border-0 hover-shadow">
+      <div class="card-body p-0">
+        <div class="p-4">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div class="d-flex align-items-center">
+              <div class="icon-container bg-success-subtle rounded-circle me-3">
+                <i class="fa-solid fa-file-lines fa-lg text-success"></i>
+              </div>
+              <h5 class="mb-0">{{ _("Content") }}</h5>
+            </div>
+            <div class="dropdown">
+              <button
+                class="btn btn-sm btn-light"
+                type="button"
+                id="contentDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+              </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="contentDropdown"
+              >
+                <li>
+                  <a class="dropdown-item" href="{{ url_for('admin:create', identity='blog-post') }}"
+                    ><i class="fa-solid fa-plus me-2"></i>{{ _("Add New") }}</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{{ url_for('admin:list', identity='blog-post') }}"
+                    ><i class="fa-solid fa-list me-2"></i>{{ _("View All") }}</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="text-center">
+              <h3 class="fw-bold mb-1">{{ metrics.total_posts }}</h3>
+              <span class="text-muted">{{ _("Total Posts") }}</span>
+            </div>
+            <div class="vr mx-4" style="height: 40px"></div>
+            <div class="text-center">
+              <h3 class="fw-bold mb-1">{{ metrics.total_published_posts }}</h3>
+              <span class="text-muted">{{ _("Published") }}</span>
+            </div>
+          </div>
+
+            {% set pct = (
+                (metrics.total_published_posts / metrics.total_posts * 100)
+                if metrics.total_posts else 0
+            ) | round(0) %}
+
+          <div class="progress mb-2" style="height: 6px">
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              style="width: {{ pct }}%;"
+              aria-valuenow="{{ pct }}"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <small class="text-muted">{{ pct }}% {{ _("published") }}</small>
+            <small class="text-muted">{{ (100 - pct)|round(0) }}% {{ _("drafts") }}</small>
+          </div>
+        </div>
+
+        <div class="card-footer bg-white p-3 border-top">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-muted">{{ _("Content overview") }}</span>
+            <a
+              href="{{ url_for('admin:list', identity='blog-post') }}"
+              class="btn btn-sm btn-success"
+            >
+              {{ _("Manage Posts") }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contacts & Communication Card -->
+  <div class="col-sm-6 col-lg-4">
+    <div class="card shadow-sm h-100 border-0 hover-shadow">
+      <div class="card-body p-0">
+        <div class="p-4">
+          <div class="d-flex align-items-center mb-3">
+            <div class="icon-container bg-info-subtle rounded-circle me-3">
+              <i class="fa-solid fa-address-book fa-lg text-info"></i>
+            </div>
+            <h5 class="mb-0">{{ _("Communication") }}</h5>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="text-center">
+              <h3 class="fw-bold mb-1">{{ metrics.total_contacts }}</h3>
+              <span class="text-muted">{{ _("Total Contacts") }}</span>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center p-3 bg-light rounded mb-2">
+            <i class="fa-solid fa-clock-rotate-left text-info me-3"></i>
+            <div>
+              <h6 class="mb-0 fw-semibold">{{ _("Latest Contact") }}</h6>
+              {% if metrics.latest_contact %}
+              <p class="mb-0 small">{{ metrics.latest_contact|datetime }}</p>
+              {% else %}
+              <p class="mb-0 small">{{ _("No contacts yet") }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer bg-white p-3 border-top">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="text-muted">{{ _("Message inbox") }}</span>
+            <a
+              href="{{ url_for('admin:list', identity='contact') }}"
+              class="btn btn-sm btn-info text-white"
+            >
+              {{ _("View Contacts") }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Resources & Quick Links -->
+<div class="row mt-4 g-4">
+  <!-- Resources Panel -->
+  <div class="col-lg-8">
+    <div class="card shadow-sm h-100 border-0 hover-shadow">
+      <div class="card-header bg-white border-0 p-4">
+        <h5 class="mb-0">{{ _("Resources & Quick Links") }}</h5>
+      </div>
+      <div class="card-body p-4">
+        <div class="row gy-4">
+          <!-- Visit Site -->
+          <div class="col-sm-6">
+            <div class="d-flex align-items-start">
+              <div
+                class="icon-container bg-secondary-subtle rounded-circle me-3"
+              >
+                <i class="fa-solid fa-globe fa-lg text-secondary"></i>
+              </div>
+              <div>
+                <h6 class="mb-1">{{ _("Visit Site") }}</h6>
+                <p class="small text-muted mb-0">{{ _("Go to the live application.") }}</p>
+                <a href="/" class="small" target="_blank">{{ _("Open Website") }} →</a>
+              </div>
+            </div>
+          </div>
+          <!-- Documentation -->
+          <div class="col-sm-6">
+            <div class="d-flex align-items-start">
+              <div class="icon-container bg-primary-subtle rounded-circle me-3">
+                <i class="fa-solid fa-book-open fa-lg text-primary"></i>
+              </div>
+              <div>
+                <h6 class="mb-1">{{ _("Documentation") }}</h6>
+                <p class="small text-muted mb-0">{{ _("Browse API docs and guides.") }}</p>
+                <a href="/docs" class="small" target="_blank">{{ _("Go to Docs") }} →</a>
+              </div>
+            </div>
+          </div>
+          <!-- Support -->
+          <div class="col-sm-6">
+            <div class="d-flex align-items-start">
+              <div class="icon-container bg-success-subtle rounded-circle me-3">
+                <i class="fa-solid fa-life-ring fa-lg text-success"></i>
+              </div>
+              <div>
+                <h6 class="mb-1">{{ _("Support") }}</h6>
+                <p class="small text-muted mb-0">{{ _("Get help or report issues.") }}</p>
+                <a href="#" class="small">{{ _("Contact Support") }} →</a>
+              </div>
+            </div>
+          </div>
+          <!-- Settings -->
+          <div class="col-sm-6">
+            <div class="d-flex align-items-start">
+              <div class="icon-container bg-warning-subtle rounded-circle me-3">
+                <i class="fa-solid fa-cog fa-lg text-warning"></i>
+              </div>
+              <div>
+                <h6 class="mb-1">{{ _("Settings") }}</h6>
+                <p class="small text-muted mb-0">{{ _("Configure your application.") }}</p>
+                <a href="#" class="small">{{ _("Manage Settings") }} →</a>
+              </div>
+            </div>
+          </div>
+          <!-- Analytics -->
+          <div class="col-sm-6">
+            <div class="d-flex align-items-start">
+              <div class="icon-container bg-info-subtle rounded-circle me-3">
+                <i class="fa-solid fa-chart-simple fa-lg text-info"></i>
+              </div>
+              <div>
+                <h6 class="mb-1">{{ _("Analytics") }}</h6>
+                <p class="small text-muted mb-0">{{ _("View analytics reports.") }}</p>
+                <a href="#" class="small">{{ _("View Analytics") }} →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer bg-white p-3 border-top text-center">
+        <a href="#" class="btn btn-sm btn-outline-secondary"
+          >{{ _("See All Resources") }}</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="col-lg-4">
+    <div class="card shadow-sm h-100 border-0 hover-shadow">
+      <div class="card-header bg-white border-0 p-4">
+        <h5 class="mb-0">{{ _("Quick Actions") }}</h5>
+      </div>
+      <div class="card-body p-4">
+        <div class="d-grid gap-3">
+          <a
+            href="{{ url_for('admin:create', identity='user') }}"
+            class="btn btn-primary"
+          >
+            <i class="fa-solid fa-user-plus me-2"></i> {{ _("Add User") }}
+          </a>
+          <a
+            href="{{ url_for('admin:create', identity='blog-post') }}"
+            class="btn btn-success"
+          >
+            <i class="fa-solid fa-note-sticky me-2"></i> {{ _("New Post") }}
+          </a>
+          <a
+            href="{{ url_for('admin:list', identity='contact') }}"
+            class="btn btn-info text-white"
+          >
+            <i class="fa-solid fa-address-book me-2"></i> {{ _("View Contacts") }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

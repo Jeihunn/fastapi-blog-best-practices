@@ -1,0 +1,113 @@
+{% extends "sqladmin/base.html" %}
+{% from 'sqladmin/_macros.html' import display_menu %}
+{% block body %}
+<div class="wrapper">
+  <aside class="navbar navbar-expand-lg navbar-vertical navbar-expand-md navbar-dark">
+    <div class="container-fluid">
+      <h1 class="navbar-brand navbar-brand-autodark">
+        <a href="{{ url_for('admin:index') }}">
+          {% if admin.logo_url %}
+          <img src="{{ admin.logo_url }}" width="64" height="64" alt="Admin" class="navbar-brand-image" />
+          {% else %}
+          <h3>{{ admin.title }}</h3>
+          {% endif %}
+        </a>
+      </h1>
+      <nav class="navbar navbar-expand-sm" id="navbar-menu">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          {{ display_menu(admin._menu, request) }}
+        </div>
+      </nav>
+
+      {# Language Switcher (Codes Only) #}
+      {% set current_lang_code = request.state.language %}
+      {# Check if supported_locales is defined and has more than one option #}
+      {% if supported_locales is defined and supported_locales|length > 1 %}
+      <div class="dropdown mt-3 mb-3 w-100">
+        <button
+          class="btn btn-secondary dropdown-toggle w-100 d-flex align-items-center justify-content-between"
+          type="button"
+          id="langDropdown"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          title="Change Language"
+        >
+          <span>
+              <i class="fa fa-globe me-2"></i>
+              {{ current_lang_code.upper() }}
+          </span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-dark w-100 shadow" aria-labelledby="langDropdown">
+          {% for code in supported_locales %}
+            <a
+              href="#"
+              class="dropdown-item {% if code == current_lang_code %}active{% endif %}"
+              onclick="setLanguageCookie('{{ code }}'); return false;"
+            >
+              {{ code.upper() }}
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if admin.authentication_backend %}
+      {% if request.state.user %}
+      <div class="mt-1 mb-2 user-info">
+        <div class="d-flex align-items-center">
+          <div class="user-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mr-2" style="width: 32px; height: 32px; margin-right: 10px;">
+            <i class="fa fa-user"></i>
+          </div>
+          <div class="user-details text-light" style="word-break: break-word; max-width: 180px;">
+            {{ request.state.user.email }}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      <a href="{{ request.url_for('admin:logout') }}" class="btn btn-secondary btn-icon">
+        <i class="fa fa-sign-out"></i>
+        <span class="ms-1">{{ _("Logout") }}</span>
+      </a>
+      {% endif %}
+    </div>
+  </aside>
+  <div class="page-wrapper">
+    <div class="container-fluid">
+      <div class="page-header d-print-none">
+        {% block content_header %}
+        <div class="row align-items-center">
+          <div class="col">
+            <h2 class="page-title">{{ title }}</h2>
+            <div class="page-pretitle">{{ subtitle }}</div>
+          </div>
+        </div>
+        {% endblock %}
+      </div>
+    </div>
+    <div class="page-body flex-grow-1">
+      <div class="container-fluid">
+        <div class="row row-deck row-cards">
+          {% block content %} {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{# JavaScript for Language Switcher #}
+<script>
+  function setLanguageCookie(lang) {
+    // Set cookie to expire in 1 year
+    const expiryDate = new Date();
+    expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+    document.cookie = `language=${lang}; Path=/; Expires=${expiryDate.toUTCString()}; SameSite=Lax`;
+    // Add a small delay before reload to ensure cookie is set
+    setTimeout(() => window.location.reload(), 100);
+  }
+</script>
+{% endblock %}
