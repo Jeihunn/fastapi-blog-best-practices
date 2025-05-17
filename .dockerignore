@@ -1,0 +1,7 @@
+.tmp/
+.temp/
+.cache/
+venv/
+.venv/
+pgdb/
+media/

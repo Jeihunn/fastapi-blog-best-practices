@@ -1,0 +1,86 @@
+services:
+  db:
+    container_name: db
+    image: postgres:16.9
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdb_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: on-failure
+    healthcheck:
+      test: pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    container_name: redis
+    image: redis:8.0.1-alpine
+    env_file: .env
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes --replicaof no one
+    restart: on-failure
+    healthcheck:
+      test: redis-cli ping || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    container_name: web
+    build:
+      context: .
+    env_file: .env
+    volumes:
+      - .:/code
+      - ./static/:/code/static/
+      - ./media/:/code/media/
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: on-failure
+    healthcheck:
+      test: "curl --fail --silent -H 'Host: ${HOST_HEADER}' http://localhost:8000/api/healthcheck || exit 1"
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  nginx:
+    container_name: nginx
+    image: nginx:1.28.0
+    env_file: .env
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./static/:/code/static/
+      - ./media/:/code/media/
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      web:
+        condition: service_started
+    restart: on-failure
+    healthcheck:
+      test: "curl --fail --silent -H 'Host: ${HOST_HEADER}' http://localhost/api/healthcheck || exit 1"
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  pgdb_data:
+    name: pgdb_data
+    driver: local
+  redis_data:
+    name: redis_data
+    driver: local
