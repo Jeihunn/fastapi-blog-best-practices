@@ -10,7 +10,7 @@ license = "MIT"
 [project.urls]
 Repository = "https://github.com/Jeihunn/fastapi-blog-best-practices.git"
 Documentation = "https://github.com/Jeihunn/fastapi-blog-best-practices/blob/main/README.md"
-Issues = "https://github.com/Jeihunn/fastapi-blog-best-practices.git/issues"
+Issues = "https://github.com/Jeihunn/fastapi-blog-best-practices/issues"
 
 [tool.black]
 line-length = 88
