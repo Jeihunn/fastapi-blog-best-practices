@@ -18,5 +18,5 @@ router = APIRouter(
     status_code=status.HTTP_200_OK,
     summary="Health check",
 )
-async def health_check() -> HealthResponse:
-    return HealthResponse(status="OK")
+async def health_check() -> dict[str, str]:
+    return {"status": "OK"}
