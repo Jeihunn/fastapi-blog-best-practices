@@ -81,7 +81,7 @@ async def update_my_profile_image(
     ),
     current_user: User = Depends(current_active_user),
     user_manager: UserManager = Depends(get_user_manager),
-) -> MessageResponse:
+) -> dict[str, str]:
     FIELD_NAME = "profile_image"
 
     # 1) Retrieve column metadata
@@ -153,7 +153,7 @@ async def update_my_profile_image(
         except Exception as exc:
             logger.warning("Failed to delete old file '%s': %s", old_path, exc)
 
-    return MessageResponse(message=gettext("Profile image updated successfully."))
+    return {"message": gettext("Profile image updated successfully.")}
 
 
 @router.delete(
@@ -251,7 +251,7 @@ async def change_my_password(
     data: ChangePasswordRequest,
     current_user: User = Depends(current_active_user),
     user_manager: UserManager = Depends(get_user_manager),
-) -> MessageResponse:
+) -> dict[str, str]:
     # 1) Verify current password, get updated hash if algorithm changed
     verified, updated_hash = user_manager.password_helper.verify_and_update(
         data.current_password, current_user.hashed_password
@@ -291,4 +291,4 @@ async def change_my_password(
             detail=gettext("An error occurred while changing the password."),
         )
 
-    return MessageResponse(message=gettext("Password changed successfully."))
+    return {"message": gettext("Password changed successfully.")}

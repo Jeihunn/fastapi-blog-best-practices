@@ -29,7 +29,7 @@ router = APIRouter(
 async def create_contact(
     payload: ContactCreate = Body(..., description="Contact form data"),
     session: AsyncSession = Depends(get_async_session),
-) -> MessageResponse:
+) -> dict[str, str]:
     contact = Contact(
         phone_number=payload.phone_number,
         email=payload.email,
@@ -47,4 +47,4 @@ async def create_contact(
             detail=gettext("An error occurred while submitting your message."),
         )
 
-    return MessageResponse(message=gettext("Your message has been received."))
+    return {"message": gettext("Your message has been received.")}
