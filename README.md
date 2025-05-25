@@ -1,19 +1,24 @@
 # 🚀 Blog Project - FastAPI Best Practices
 
-This template summarizes the core principles of developing applications with FastAPI through practical examples, providing a reliable starting point for both beginners and experienced developers.
+A comprehensive starter kit that brings together industry-proven FastAPI patterns and real-world examples, helping both newcomers and seasoned engineers build robust, maintainable applications faster.
 
 ---
 
-## ✨ Features
+✨ Features
 
-- High performance with asynchronous operations
-- Modular and extensible architecture
-- Robust authentication and authorization mechanisms
-- Automated database migrations
-- Multi-language support and admin panel
-- Structured logging: detailed logs written to the console and rotating files
-- Server-rendered frontend using Jinja2 templates
-- Unified development and deployment environment with Docker
+- Full asynchronous FastAPI application for high performance.
+- Modular and extensible project architecture.
+- SQLAlchemy ORM and PostgreSQL database integration.
+- Automated database migrations with Alembic.
+- Comprehensive authentication via fastapi-users (JWT, registration, login).
+- API rate limiting using fastapi-limiter.
+- Efficient data pagination with fastapi-pagination.
+- Email sending functionality via fastapi-mail.
+- Multi-language support powered by starlette-babel.
+- Structured logging (console and rotating file outputs).
+- Full-featured admin panel using SQLAdmin.
+- Server-side rendering for frontend with Jinja2.
+- Production-ready deployment using Docker Compose and Nginx.
 
 ---
 
@@ -78,4 +83,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Demo showcasing the project in action
 
-[![FastAPI Blog Project Demo](https://img.youtube.com/vi/fixMe/maxresdefault.jpg)](https://www.youtube.com/watch?v=fixMe)
+[![FastAPI Blog Project Demo](https://img.youtube.com/vi/CzU4rLK_UTU/maxresdefault.jpg)](https://www.youtube.com/watch?v=CzU4rLK_UTU)
