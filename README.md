@@ -83,4 +83,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Demo showcasing the project in action
 
-[![FastAPI Blog Project Demo](https://img.youtube.com/vi/CzU4rLK_UTU/maxresdefault.jpg)](https://www.youtube.com/watch?v=CzU4rLK_UTU)
+[![FastAPI Blog Project Demo](https://img.youtube.com/vi/EQT_BD4pDls/maxresdefault.jpg)](https://www.youtube.com/watch?v=EQT_BD4pDls)
