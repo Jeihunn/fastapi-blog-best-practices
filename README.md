@@ -4,7 +4,7 @@ A comprehensive starter kit that brings together industry-proven FastAPI pattern
 
 ---
 
-✨ Features
+## ✨ Features
 
 - Full asynchronous FastAPI application for high performance.
 - Modular and extensible project architecture.
