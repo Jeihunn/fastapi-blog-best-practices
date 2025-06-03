@@ -83,7 +83,7 @@ def create_app() -> FastAPI:
     register_exception_handlers(app)
     register_validation_handlers(app)
     register_admin(app)
-    register_routers(app)
+    register_router(app)
     register_pagination(app)
 
     return app
@@ -210,17 +210,17 @@ def register_pagination(app: FastAPI) -> None:
     add_pagination(app)
 
 
-def register_routers(app: FastAPI) -> None:
+def register_router(app: FastAPI) -> None:
     """
-    Include all routers.
+    Include all router modules.
     """
-    register_api_routes(app)
-    register_web_routes(app)
+    register_api_router(app)
+    register_web_router(app)
 
 
-def register_api_routes(app: FastAPI) -> None:
+def register_api_router(app: FastAPI) -> None:
     """
-    Include API routers.
+    Include API router modules.
     """
     from src.auth.api.router import router as auth_api_router
     from src.blogs.api.router import router as blogs_api_router
@@ -235,9 +235,9 @@ def register_api_routes(app: FastAPI) -> None:
     app.include_router(users_api_router)
 
 
-def register_web_routes(app: FastAPI) -> None:
+def register_web_router(app: FastAPI) -> None:
     """
-    Include web routers.
+    Include web router modules.
     """
     from src.auth.web.router import router as auth_web_router
     from src.blogs.web.router import router as blogs_web_router
